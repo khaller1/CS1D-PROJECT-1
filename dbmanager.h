@@ -1,15 +1,15 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
-#include <QSqlDatabase>
-#include <iomanip>
-#include <iostream>
+#include <structs.h>
+#include <QtSql>
+#include <QDebug>
+
 using namespace std;
 
 class DbManager
 {
 public:
-    DbManager();
     DbManager(const QString& path);
     ~DbManager();
     bool addRestaurant(int id, const QString &namein, double dist, int size);
@@ -58,8 +58,13 @@ public:
     double getRestDist(int id);
     int getMenuSize(int id);
 
+    bool loadRestaurants(QVector<Restaurant>& vRestaurants);
+    bool loadMenus(QVector<Menu>& vMenus);
+    bool loadDistances(QVector<AllDist>& vDistances);
+    bool loadAdmins(QVector<AdminData>& vAdmins);
 private:
     QSqlDatabase m_db;
+
 };
 
 #endif // DBMANAGER_H
