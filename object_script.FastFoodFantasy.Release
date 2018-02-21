@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\launcher.o
+./release\dbmanager.o
+./release\datamanager.o
+./release\restauranttable.o
+./release\viewrest.o
+./release\menuview.o
+./release\menutable.o
+./release\moc_launcher.o
+./release\moc_restauranttable.o
+./release\moc_restView.o
+./release\moc_menutable.o
+./release\moc_menuview.o
+);
