@@ -551,7 +551,7 @@ bool DbManager::loadMenus(QVector<Menu>& vMenus){
 
 bool DbManager::loadDistances(QVector<AllDist>& vDistances){
     AllDist temp;
-    QSqlQuery query("SELECT * FROM menu");
+    QSqlQuery query("SELECT * FROM distance");
     query.exec();
 
       while(query.next())
