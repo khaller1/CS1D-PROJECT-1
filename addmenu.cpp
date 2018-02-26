@@ -26,6 +26,7 @@ void addMenu::on_pushButton_add_clicked()
     if(check)
     {
         QMessageBox::information(this, "Add Menu Item", "item was successfully added!");
+        DM->addMenuStruct(baseid, parentid, name, cost);
     }
     else
     {
@@ -43,6 +44,7 @@ void addMenu::on_pushButton_edit_clicked()
     bool check = DM->editMenu(baseid, parentid, name, cost);
     if(check)
     {
+        DM->editMenuStruct(baseid, parentid, name, cost);
         QMessageBox::information(this, "Edit Menu Item", "item was successfully updated!");
     }
     else
@@ -62,6 +64,12 @@ void addMenu::on_pushButton_delete_clicked()
 
     if(check)
     {
+        DM->deleteMenuStruct(baseid, parentid);
         QMessageBox::information(this, "Delete Menu Item", "item was successfully deleted!");
     }
+}
+
+void addMenu::on_pushButton_exit_clicked()
+{
+    this->close();
 }

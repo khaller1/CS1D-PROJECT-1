@@ -5395,20 +5395,31 @@ release\addmenu.obj: addmenu.cpp addmenu.h \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtGui\qinputmethod.h \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QComboBox \
-		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QGridLayout \
-		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QFormLayout \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qformlayout.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QLayout \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qlayout.h \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qlayoutitem.h \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QHBoxLayout \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QHeaderView \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QPushButton \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qpushbutton.h \
 		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QTableView \
-		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qtableview.h \
-		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QVBoxLayout
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\QMessageBox \
+		..\..\..\..\Qt\5.7\msvc2015_64\include\QtWidgets\qmessagebox.h
 
 release\moc_launcher.obj: release\moc_launcher.cpp 
 

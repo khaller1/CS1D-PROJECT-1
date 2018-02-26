@@ -60,7 +60,7 @@ bool DataManager::deleteRestaurant(QString id)
 
 bool DataManager::addMenu(QString id, QString parent, const QString &namein, QString cost)
 {
-    return true;
+    return DB->addMenuItem(id, parent, namein, cost);
 }
 void DataManager::addRestStruct(QString id, const QString &namein, QString dist, QString size)
 {
@@ -106,4 +106,62 @@ bool DataManager::editMenu(QString id, QString parent, const QString &namein, QS
 bool DataManager::deleteMenu(QString id, QString parent)
 {
     return DB->deleteMenuItem(id, parent);
+}
+
+void DataManager::addMenuStruct(QString id, QString parent, const QString &namein, QString cost)
+{
+    int idnum = id.toInt();
+    int parentid = parent.toInt();
+    QString name = namein;
+    double price = cost.toDouble();
+
+    Menu temp;
+    temp.cost=price;
+    temp.name=name;
+    temp.parentID=parent.toInt();
+    inMenu.push_back(temp);
+    for(int i=0;i<inRest.length()-1;i++)
+    {
+        if(inRest.at(i).idNum==parentid)
+        {
+
+            inRest[i].RMenu.push_back(temp);
+        }
+    }
+}
+void DataManager::editMenuStruct(QString id, QString parent, const QString &namein, QString cost)
+{
+    int idnum = id.toInt();
+    int parentid = parent.toInt();
+    QString name = namein;
+    double price = cost.toDouble();
+
+    Menu temp;
+    temp.baseid=idnum;
+    temp.cost=price;
+    temp.name=name;
+    temp.parentID=parent.toInt();
+
+    for(int i=0;i<inMenu.length()-1;i++)
+    {
+        if(inMenu[i].baseid==idnum)
+        {
+            inMenu.remove(i);
+            inMenu.push_back(temp);
+        }
+    }
+}
+
+void DataManager::deleteMenuStruct(QString id, QString parent)
+{
+    int idnum = id.toInt();
+    int parentid = parent.toInt();
+
+    for(int i=0;i<inMenu.length()-1;i++)
+    {
+        if(inMenu[i].baseid==idnum && inMenu[i].parentID==parentid)
+        {
+            inMenu.remove(i);
+        }
+    }
 }

@@ -40,6 +40,7 @@ void Launcher::on_ViewMenu_Button_clicked()
 void Launcher::on_AdminLogin_Button_clicked()
 {
     login* admin = new login(DM, this);
+    this->hide();
     admin->exec();
     this->show();
 }

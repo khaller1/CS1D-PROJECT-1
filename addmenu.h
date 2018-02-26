@@ -22,6 +22,8 @@ private slots:
 
     void on_pushButton_delete_clicked();
 
+    void on_pushButton_exit_clicked();
+
 private:
     Ui::addMenu *ui;
     QWidget *prev;

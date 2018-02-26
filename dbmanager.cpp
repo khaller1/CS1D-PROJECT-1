@@ -60,7 +60,7 @@ bool DbManager::addMenuItem(QString id, QString parent, const QString &namein, Q
     query.prepare("insert into menu (baseId, parentId, itemName, itemCost) values ('"+id+"','"+parent+"','"+namein+"','"+cost+"')");
     if(query.exec())
         success=true;
-    else qDebug() << "add restaurant failed - " << query.lastError();
+    else qDebug() << "add menu failed - " << query.lastError();
     return success;
 }
 bool DbManager::editRest(QString id, const QString &namein, QString dist, QString size)
@@ -78,7 +78,7 @@ bool DbManager::editMenu(QString id, QString parent, const QString &namein, QStr
 {
     bool success=false;
     QSqlQuery query;
-    query.prepare("update menu set itemName = '"+namein+"', itemCost ='"+cost+"', baseId = '"+id+"' where parentId= '"+parent+"'");
+    query.prepare("update menu set itemName = '"+namein+"', itemCost ='"+cost+"' where baseId= '"+id+"' and parentId = '"+parent+"'");
     if(query.exec())
         success=true;
     else
@@ -594,10 +594,10 @@ bool DbManager::loadMenus(QVector<Menu>& vMenus){
 
       while(query.next())
       {
+          temp.baseid = query.value(0).toInt();
           temp.parentID = query.value(1).toInt();
           temp.name = query.value(2).toString();
           temp.cost = query.value(3).toDouble();
-
           vMenus.push_back(temp);
       }
       return vMenus.size() > 0;
