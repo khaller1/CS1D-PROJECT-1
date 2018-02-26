@@ -32,7 +32,9 @@ SOURCES += \
     viewrest.cpp \
     menuview.cpp \
     menutable.cpp \
-    tripview.cpp
+    tripview.cpp \
+    trip.cpp \
+    carttable.cpp
 
 HEADERS += \
         launcher.h \
@@ -44,7 +46,9 @@ HEADERS += \
     restView.h \
     menutable.h \
     menuview.h \
-    tripview.h
+    tripview.h \
+    trip.h \
+    carttable.h
 
 FORMS += \
         launcher.ui \

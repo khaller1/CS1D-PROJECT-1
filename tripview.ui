@@ -94,14 +94,25 @@
            </spacer>
           </item>
           <item>
-           <widget class="QLabel" name="Total_Label">
-            <property name="text">
-             <string>Cost of item * qty goes here</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>Total: </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="Total_Label">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="Cart_Button">
             <property name="text">
              <string>Add To Cart</string>
             </property>

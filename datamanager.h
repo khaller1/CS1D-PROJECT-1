@@ -12,6 +12,9 @@ public:
 
     void getRestaurants(QVector<Restaurant>& oRest);
     void getAdminData(QVector<AdminData>& oAdmin);
+    void getTrip(QVector<Restaurant> &oRest);
+    void makeQuickTrip();
+
 
 private:
     DbManager* DB;
@@ -19,6 +22,7 @@ private:
     QVector<Menu> inMenu;
     QVector<AllDist> inDist;
     QVector<AdminData> inAdmin;
+    QVector<Restaurant> qTrip;
 };
 
 #endif // DATAMANAGER_H

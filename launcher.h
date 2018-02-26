@@ -22,6 +22,8 @@ private slots:
 
     void on_ViewMenu_Button_clicked();
 
+    void on_QuickTrip_Button_clicked();
+
 private:
     Ui::Launcher *ui;
     DataManager* DM;
