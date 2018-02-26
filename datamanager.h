@@ -29,6 +29,8 @@ public:
     void editMenuStruct(QString id, QString parent, const QString &namein, QString cost);
     void deleteMenuStruct(QString id, QString parent);
 
+    bool addDist(QString source, QString miles, QString destination);
+
 private:
     DbManager* DB;
     QVector<Restaurant> inRest;

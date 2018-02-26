@@ -16,6 +16,7 @@ public:
     bool addRestaurant(const QString &namein, QString dist, QString size);
     bool addMenuItem(QString id, QString parent, const QString &namein, QString cost);
     bool addDistance(int source, double miles, int destination );
+    bool addDistance(QString source, QString miles, QString destination );
 
     bool deleteRestaurant(QString id);
     bool deleteMenuItem(QString id, QString parent);

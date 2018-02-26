@@ -2,6 +2,7 @@
 #include "ui_adminlauncher.h"
 #include <addrestaurant.h>
 #include <addmenu.h>
+#include <adddistance.h>
 adminLauncher::adminLauncher(DataManager* inDM, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::adminLauncher)
@@ -55,4 +56,11 @@ void adminLauncher::on_pushButton_addmenu_clicked()
    // this->hide();
     menu->exec();
     //this->show();
+}
+
+void adminLauncher::on_pushButton_3_clicked()
+{
+    adddistance *dist;
+    dist = new adddistance(DM, this);
+    dist->exec();
 }

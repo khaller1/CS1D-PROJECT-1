@@ -36,7 +36,8 @@ SOURCES += \
     login.cpp \
     adminlauncher.cpp \
     addrestaurant.cpp \
-    addmenu.cpp
+    addmenu.cpp \
+    adddistance.cpp
 
 HEADERS += \
         launcher.h \
@@ -52,7 +53,8 @@ HEADERS += \
     login.h \
     adminlauncher.h \
     addrestaurant.h \
-    addmenu.h
+    addmenu.h \
+    adddistance.h
 
 FORMS += \
         launcher.ui \
@@ -62,4 +64,5 @@ FORMS += \
     login.ui \
     adminlauncher.ui \
     addrestaurant.ui \
-    addmenu.ui
+    addmenu.ui \
+    adddistance.ui

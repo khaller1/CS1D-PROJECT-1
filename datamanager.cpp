@@ -165,3 +165,7 @@ void DataManager::deleteMenuStruct(QString id, QString parent)
         }
     }
 }
+bool DataManager::addDist(QString source, QString miles, QString destination)
+{
+    return DB->addDistance(source, miles, destination);
+}
