@@ -63,6 +63,16 @@ bool DbManager::addMenuItem(QString id, QString parent, const QString &namein, Q
     else qDebug() << "add menu failed - " << query.lastError();
     return success;
 }
+bool DbManager::addMenuItem(QString parent, const QString &namein, QString cost)
+{
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into menu (parentId, itemName, itemCost) values ('"+parent+"','"+namein+"','"+cost+"')");
+    if(query.exec())
+        success=true;
+    else qDebug() << "add menu failed - " << query.lastError();
+    return success;
+}
 bool DbManager::addDistance(QString source, QString miles, QString destination)
 {
     bool success=false;;

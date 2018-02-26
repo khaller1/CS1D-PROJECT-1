@@ -22,11 +22,11 @@ void addMenu::on_pushButton_add_clicked()
     QString name = ui->lineEdit_name->text();
     QString cost = ui->lineEdit_cost->text();
 
-    bool check = DM->addMenu(baseid, parentid, name, cost);
+    bool check = DM->addMenu(parentid, name, cost);
     if(check)
     {
         QMessageBox::information(this, "Add Menu Item", "item was successfully added!");
-        DM->addMenuStruct(baseid, parentid, name, cost);
+        DM->addMenuStruct(parentid, name, cost);
     }
     else
     {

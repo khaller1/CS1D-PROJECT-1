@@ -22,10 +22,11 @@ public:
     void deleteRestStruct(QString id);
 
     bool addMenu(QString id, QString parent, const QString &namein, QString cost);
+    bool addMenu(QString parent, const QString &namein, QString cost);
     bool editMenu(QString id, QString parent, const QString &namein, QString cost);
     bool deleteMenu(QString id, QString parent);
 
-    void addMenuStruct(QString id, QString parent, const QString &namein, QString cost);
+    void addMenuStruct(QString parent, const QString &namein, QString cost);
     void editMenuStruct(QString id, QString parent, const QString &namein, QString cost);
     void deleteMenuStruct(QString id, QString parent);
 

@@ -62,6 +62,10 @@ bool DataManager::addMenu(QString id, QString parent, const QString &namein, QSt
 {
     return DB->addMenuItem(id, parent, namein, cost);
 }
+bool DataManager::addMenu(QString parent, const QString &namein, QString cost)
+{
+    return DB->addMenuItem(parent, namein, cost);
+}
 void DataManager::addRestStruct(QString id, const QString &namein, QString dist, QString size)
 {
     Restaurant temp;
@@ -108,9 +112,8 @@ bool DataManager::deleteMenu(QString id, QString parent)
     return DB->deleteMenuItem(id, parent);
 }
 
-void DataManager::addMenuStruct(QString id, QString parent, const QString &namein, QString cost)
+void DataManager::addMenuStruct(QString parent, const QString &namein, QString cost)
 {
-    int idnum = id.toInt();
     int parentid = parent.toInt();
     QString name = namein;
     double price = cost.toDouble();
@@ -124,7 +127,6 @@ void DataManager::addMenuStruct(QString id, QString parent, const QString &namei
     {
         if(inRest.at(i).idNum==parentid)
         {
-
             inRest[i].RMenu.push_back(temp);
         }
     }
