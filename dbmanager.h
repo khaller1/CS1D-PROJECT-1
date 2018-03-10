@@ -12,10 +12,15 @@ class DbManager
 public:
     DbManager(const QString& path);
     ~DbManager();
-    bool addRestaurant(int id, const QString &namein, double dist, int size);
-    bool addMenuItem(int id, const QString &namein, double cost);
+    bool addRestaurant(QString id, const QString &namein, QString dist, QString size);
+    bool addRestaurant(const QString &namein, QString dist, QString size);
+    bool addMenuItem(QString id, QString parent, const QString &namein, QString cost);
+    bool addMenuItem(QString parent, const QString &namein, QString cost);
     bool addDistance(int source, double miles, int destination );
+    bool addDistance(QString source, QString miles, QString destination );
 
+    bool deleteRestaurant(QString id);
+    bool deleteMenuItem(QString id, QString parent);
     bool removeRestaurant(int id);
     bool removeRestaurant(QString name);
     bool removeMenuItem(QString name);
@@ -34,12 +39,14 @@ public:
     bool isOpen() const;
     bool createTable();
 
+    bool editRest(QString id, const QString &namein, QString dist, QString size);
     void setRestName(const QString &name, int id) const;
     void setRestName(QString oldName, QString newName);
     void setRestDist(double dist, int id) const;
     void setRestDist(QString name, double dist);
     void setMenuSize(int size, int id) const;
 
+    bool editMenu(QString id, QString parent, const QString &namein, QString cost);
     void setItemName(int id, QString newName);
     void setItemName(QString oldName, QString newName);
     void setItemPrice(int id, double price);
@@ -62,6 +69,7 @@ public:
     bool loadMenus(QVector<Menu>& vMenus);
     bool loadDistances(QVector<AllDist>& vDistances);
     bool loadAdmins(QVector<AdminData>& vAdmins);
+    QSqlDatabase getDb();
 private:
     QSqlDatabase m_db;
 

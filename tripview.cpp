@@ -8,18 +8,22 @@ TripView::TripView(DataManager* inDM, QWidget *parent) :
     prev = parent;
     DM = inDM;
     DM->getTrip(cTrip);
-
+    dist_traveled = 0;
     M_Table = new menuTable(cTrip[0].RMenu);
     C_Table = new cartTable(trip_Cart);
-    rTable = new RestaurantTable(cTrip);
+    rTable = new TripTable(cTrip);
     Proxy = new QSortFilterProxyModel(this);
     Proxy->setSourceModel(rTable);
     genComboMenu();
     ui->setupUi(this);
+    ui->tabWidget->setCurrentIndex(0);
     ui->Trip_List->setModel(Proxy);
     ui->Menu_List->setModel(M_Table);
     ui->Cart_Table->setModel(C_Table);
     ui->selector_box->addItems(combo);
+    QString travel;
+    travel.setNum(cTrip[0].SBdist);
+    ui->Total_Dist->setText(travel);
 }
 
 TripView::~TripView()
@@ -37,12 +41,17 @@ void TripView::genComboMenu(){
 void TripView::on_pushButton_clicked()
 {
     if(cTrip.size() > 1){
+        QString travel = ui->Total_Dist->text();
+        double d = travel.toDouble();
         ui->Total_Label->clear();
         ui->qty_box->setValue(0);
         ui->selector_box->setCurrentIndex(0);
         cTrip.pop_front();
+        d+=cTrip[0].SBdist;
+        travel.setNum(d);
+        ui->Total_Dist->setText(travel);
         ui->Trip_List->reset();
-        rTable = new RestaurantTable(cTrip);
+        rTable = new TripTable(cTrip);
         Proxy = new QSortFilterProxyModel(this);
         Proxy->setSourceModel(rTable);
         ui->Trip_List->setModel(Proxy);
@@ -52,7 +61,9 @@ void TripView::on_pushButton_clicked()
         genComboMenu();
         ui->selector_box->clear();
         ui->selector_box->addItems(combo);
+
     } else {
+        DM->EndTrip();
         this->close();
     }
 

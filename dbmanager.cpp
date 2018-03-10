@@ -12,6 +12,10 @@ bool DbManager::isOpen() const
 {
     return m_db.isOpen();
 }
+QSqlDatabase DbManager::getDb()
+{
+    return m_db;
+}
 
 DbManager::DbManager(const QString& path)
 {
@@ -27,34 +31,115 @@ DbManager::DbManager(const QString& path)
     }
 }
 
-bool DbManager::addRestaurant(int id, const QString &namein, double dist, int size)
+bool DbManager::addRestaurant(QString id, const QString &namein, QString dist, QString size)
 {
     bool success=false;
-    QSqlQuery query("INSERT INTO restaurant (restId, restName, distancetoSaddleback, menuSize)"
-                    "VALUES (:restId, :restName, :distancetoSaddleback, :menuSize)");
-    query.bindValue(":restId", id);
-    query.bindValue(":restName", namein);
-    query.bindValue(":distancetoSaddleback", dist);
-    query.bindValue(":menuSize", size);
+    QSqlQuery query;
+    query.prepare("insert into restaurant (restId, restName, sbDist, menuSize) values ('"+id+"','"+namein+"','"+dist+"','"+size+"')");
     if(query.exec())
         success=true;
     else qDebug() << "add restaurant failed - " << query.lastError();
     return success;
 }
 
-bool DbManager::addMenuItem(int id, const QString &namein, double cost)
+bool DbManager::addRestaurant(const QString &namein, QString dist, QString size)
 {
-    bool success=false;
-    QSqlQuery query("INSERT INTO menu (parentId, itemName, itemCost)"
-                    "VALUES (:id, :namein, :cost)");
-    query.bindValue(":id",id);
-    query.bindValue(":namein",namein);
-    query.bindValue(":cost",cost);
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into restaurant (restName, sbDist, menuSize) values ('"+namein+"','"+dist+"','"+size+"')");
     if(query.exec())
         success=true;
-    else qDebug() << "failed adding menu item - " << query.lastError();
+    else qDebug() << "add restaurant failed - " << query.lastError();
     return success;
 }
+
+bool DbManager::addMenuItem(QString id, QString parent, const QString &namein, QString cost)
+{
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into menu (baseId, parentId, itemName, itemCost) values ('"+id+"','"+parent+"','"+namein+"','"+cost+"')");
+    if(query.exec())
+        success=true;
+    else qDebug() << "add menu failed - " << query.lastError();
+    return success;
+}
+bool DbManager::addMenuItem(QString parent, const QString &namein, QString cost)
+{
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into menu (parentId, itemName, itemCost) values ('"+parent+"','"+namein+"','"+cost+"')");
+    if(query.exec())
+        success=true;
+    else qDebug() << "add menu failed - " << query.lastError();
+    return success;
+}
+bool DbManager::addDistance(QString source, QString miles, QString destination)
+{
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into distance (sourceId, miles, destinationId) values ('"+source+"','"+miles+"','"+destination+"')");
+    if(query.exec())
+        success=true;
+    else qDebug() << "add menu failed - " << query.lastError();
+    return success;
+}
+
+bool DbManager::editRest(QString id, const QString &namein, QString dist, QString size)
+{
+    bool success=false;
+    QSqlQuery query;
+    query.prepare("update restaurant set restName = '"+namein+"', sbDist ='"+dist+"', menuSize = '"+size+"' where restId= '"+id+"'");
+    if(query.exec())
+        success=true;
+    else
+        qDebug() << "failed updating restaurant - " << query.lastError();
+    return success;
+}
+bool DbManager::editMenu(QString id, QString parent, const QString &namein, QString cost)
+{
+    bool success=false;
+    QSqlQuery query;
+    query.prepare("update menu set itemName = '"+namein+"', itemCost ='"+cost+"' where baseId= '"+id+"' and parentId = '"+parent+"'");
+    if(query.exec())
+        success=true;
+    else
+        qDebug() << "failed updating menu - " << query.lastError();
+    return success;
+}
+
+bool DbManager::deleteRestaurant(QString id)
+{
+    bool success=false;
+    QSqlQuery query;
+    QSqlQuery query2;
+    QSqlQuery query3;
+    QSqlQuery query4;
+    query.prepare("delete from restaurant where restId = '"+id+"'");
+    query2.prepare("delete from menu where parentId = '"+id+"'");
+    query3.prepare("delete from distance where sourceId = '"+id+"'");
+    query4.prepare("delete from distance where destinationId = '"+id+"'");
+
+    query2.exec();
+    query3.exec();
+    query4.exec();
+    if(query.exec())
+        success=true;
+    else
+        qDebug() << "failed deleting restaurant - " << query.lastError();
+    return success;
+}
+bool DbManager::deleteMenuItem(QString id, QString parent)
+{
+    bool success=false;
+    QSqlQuery query;
+    query.prepare("delete from menu where baseId = '"+id+"' and parentId = '"+parent+"'");
+    if(query.exec())
+        success=true;
+    else
+        qDebug() << "failed deleting menu item - " << query.lastError();
+    return success;
+}
+
 bool DbManager::addDistance(int source, double miles, int destination )
 {
     bool success=false;
@@ -68,6 +153,7 @@ bool DbManager::addDistance(int source, double miles, int destination )
     else qDebug() << "failed adding distance - " << query.lastError();
     return success;
 }
+
 bool DbManager::removeRestaurant(int id)
 {
     bool success=false;
@@ -540,10 +626,10 @@ bool DbManager::loadMenus(QVector<Menu>& vMenus){
 
       while(query.next())
       {
+          temp.baseid = query.value(0).toInt();
           temp.parentID = query.value(1).toInt();
           temp.name = query.value(2).toString();
           temp.cost = query.value(3).toDouble();
-
           vMenus.push_back(temp);
       }
       return vMenus.size() > 0;

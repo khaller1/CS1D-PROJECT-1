@@ -6,6 +6,8 @@
 #include <main.h>
 #include <QSortFilterProxyModel>
 #include <carttable.h>
+#include <triptable.h>
+
 namespace Ui {
 class TripView;
 }
@@ -17,7 +19,7 @@ class TripView : public QMainWindow
 public:
     explicit TripView(DataManager *inDM, QWidget *parent = 0);
     ~TripView();
-     void genComboMenu();
+    void genComboMenu();
 
 private slots:
     void on_pushButton_clicked();
@@ -31,7 +33,7 @@ private slots:
 private:
     Ui::TripView *ui;
     DataManager* DM;
-    RestaurantTable *rTable;
+    TripTable *rTable;
     menuTable* M_Table;
     cartTable* C_Table;
     QStringList combo;
@@ -39,7 +41,7 @@ private:
     QWidget *prev;
     QVector<Restaurant> cTrip;
     QVector<Purchase> trip_Cart;
-
+    double dist_traveled;
 };
 
 #endif // TRIPVIEW_H

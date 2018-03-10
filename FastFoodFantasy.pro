@@ -33,8 +33,15 @@ SOURCES += \
     menuview.cpp \
     menutable.cpp \
     tripview.cpp \
-    trip.cpp \
-    carttable.cpp
+    login.cpp \
+    adminlauncher.cpp \
+    addrestaurant.cpp \
+    addmenu.cpp \
+    adddistance.cpp \
+    carttable.cpp \
+    triptable.cpp \
+    custom_trip.cpp \
+    customtrip_table.cpp
 
 HEADERS += \
         launcher.h \
@@ -47,11 +54,24 @@ HEADERS += \
     menutable.h \
     menuview.h \
     tripview.h \
-    trip.h \
-    carttable.h
+    login.h \
+    adminlauncher.h \
+    addrestaurant.h \
+    addmenu.h \
+    adddistance.h \
+    carttable.h \
+    triptable.h \
+    custom_trip.h \
+    customtrip_table.h
 
 FORMS += \
         launcher.ui \
     viewrest.ui \
     menuview.ui \
-    tripview.ui
+    tripview.ui \
+    login.ui \
+    adminlauncher.ui \
+    addrestaurant.ui \
+    addmenu.ui \
+    adddistance.ui \
+    custom_trip.ui

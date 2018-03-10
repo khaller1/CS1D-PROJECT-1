@@ -4,6 +4,7 @@
 #include <QVector>
 
 struct Menu{
+    int baseid;
     int parentID;
     QString name;
     double cost;

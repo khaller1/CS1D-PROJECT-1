@@ -8,5 +8,7 @@
 #include <restauranttable.h>
 #include <restView.h>
 #include <menuview.h>
+#include <login.h>
+#include <custom_trip.h>
 
 #endif // MAIN_H

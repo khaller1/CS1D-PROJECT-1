@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <main.h>
+
 namespace Ui {
 class Launcher;
 }
@@ -22,7 +23,11 @@ private slots:
 
     void on_ViewMenu_Button_clicked();
 
+    void on_AdminLogin_Button_clicked();
+
     void on_QuickTrip_Button_clicked();
+
+    void on_CustomTrip_Button_clicked();
 
 private:
     Ui::Launcher *ui;
