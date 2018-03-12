@@ -63,6 +63,7 @@ void Custom_Trip::on_Add_cTrip_Button_clicked()
 
 void Custom_Trip::on_cStart_Button_clicked()
 {
+
     TripView *Custom;
     QString Name;
     Restaurant temp;
@@ -76,13 +77,16 @@ void Custom_Trip::on_cStart_Button_clicked()
     Custom = new TripView(DM, prev);
     this->close();
     Custom->show();
+
 }
 
 void Custom_Trip::on_cTrip_Start_Button_clicked()
 {
-    TripView *Custom;
-    DM->makeCustomTrip(cust_trip);
-    Custom = new TripView(DM, prev);
-    this->close();
-    Custom->show();
+    if(!cust_trip.empty()){
+        TripView *Custom;
+        DM->makeCustomTrip(cust_trip);
+        Custom = new TripView(DM, prev);
+        this->close();
+        Custom->show();
+    }
 }

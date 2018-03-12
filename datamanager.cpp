@@ -62,7 +62,7 @@ void DataManager::makeQuickTrip(){
     qTrip.push_back(temp);
     used.push_back(qTrip[0].idNum);
 
-    for(int i=0;i<9;++i){
+    for(int i=0;i<tempRests.size();++i){
         Tdist = 999;
 
         for(auto it = 0;it<qTrip[i].DList.size();++it){
@@ -239,7 +239,7 @@ void DataManager::makeCustomStartTrip(Restaurant StartRest){
     qTrip.push_back(temp);
     used.push_back(qTrip[0].idNum);
 
-    for(int i=0;i<9;++i){
+    for(int i=0;i<tempRests.size();++i){
         Tdist = 999;
 
         for(auto it = 0;it<qTrip[i].DList.size();++it){
@@ -273,8 +273,60 @@ void DataManager::makeCustomStartTrip(Restaurant StartRest){
     }
 }
 void DataManager::makeCustomTrip(QVector<Restaurant> &oRest){
+    Restaurant temp;
+    QVector<Restaurant> tempRests;
+    int id;
+    QVector<int> used;
+    QVector<int> dests;
+    double Tdist;
     for(auto it=oRest.begin();it!=oRest.end();++it){
-        qTrip.push_back(*it);
+        tempRests.push_back(*it);
+        dests.push_back(it->idNum);
+    }
+    temp = tempRests[0];
+    for(auto it = tempRests.begin();it<tempRests.end();++it){
+        if(temp.SBdist > it->SBdist){
+            temp = *it;
+        }
+    }
+    qTrip.push_back(temp);
+    used.push_back(qTrip[0].idNum);
+
+    for(int i=0;i<tempRests.size()-1;++i){
+        Tdist = 999;
+
+        for(auto it = 0;it<qTrip[i].DList.size();++it){
+            for(auto itz = used.begin();itz!=used.end();itz++){;
+                if(it < qTrip[i].DList.size()){
+                    if(qTrip[i].DList[it].destID == *itz){
+                        qTrip[i].DList.remove(it);
+                    }
+                } else {
+                    it = 0;
+                }
+            }
+        }
+
+        for(auto it = qTrip[i].DList.begin();it!=qTrip[i].DList.end();++it){
+            for(auto itz = dests.begin();itz!= dests.end();++itz){
+                if(it->destID == *itz){
+                    if(it->dist != 0 &&
+                       it->dist < Tdist){
+                        id = it->destID;
+                        Tdist = it->dist;
+                    }
+                }
+            }
+        }
+
+        for(auto it = tempRests.begin();it<tempRests.end();++it){
+            if(it->idNum == id){
+                temp = *it;
+                temp.SBdist = Tdist;
+                qTrip.push_back(temp);
+                used.push_back(temp.idNum);
+            }
+        }
     }
 }
 void DataManager::EndTrip(){

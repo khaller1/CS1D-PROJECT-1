@@ -1,5 +1,6 @@
 #include "tripview.h"
 #include "ui_tripview.h"
+#include <invoice.h>
 
 TripView::TripView(DataManager* inDM, QWidget *parent) :
     QMainWindow(parent),
@@ -63,7 +64,12 @@ void TripView::on_pushButton_clicked()
         ui->selector_box->addItems(combo);
 
     } else {
-        DM->EndTrip();
+        QString travel = ui->Total_Dist->text();
+        double d = travel.toDouble();
+        d+=cTrip[0].SBdist;
+        Invoice* endInvoice;
+        endInvoice = new Invoice(DM, trip_Cart, d);
+        endInvoice->show();
         this->close();
     }
 
