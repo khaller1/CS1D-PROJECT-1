@@ -29,6 +29,8 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_import_clicked();
+
 private:
     Ui::adminLauncher *ui;
     DataManager* DM;

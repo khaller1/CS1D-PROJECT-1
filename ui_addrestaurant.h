@@ -21,6 +21,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -30,6 +31,7 @@ class Ui_addRestaurant
 public:
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_3;
+    QTableView *tableView;
     QVBoxLayout *verticalLayout;
     QFormLayout *formLayout_2;
     QLabel *label_2;
@@ -54,11 +56,16 @@ public:
     {
         if (addRestaurant->objectName().isEmpty())
             addRestaurant->setObjectName(QStringLiteral("addRestaurant"));
-        addRestaurant->resize(385, 261);
+        addRestaurant->resize(566, 380);
         gridLayout = new QGridLayout(addRestaurant);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        tableView = new QTableView(addRestaurant);
+        tableView->setObjectName(QStringLiteral("tableView"));
+
+        verticalLayout_3->addWidget(tableView);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         formLayout_2 = new QFormLayout();

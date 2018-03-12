@@ -29,4 +29,11 @@ struct Restaurant{
     QVector<AllDist> DList;
     QVector<Menu> RMenu;
 };
+struct Purchase{
+    QString rName;
+    QString pName;
+    double pCost;
+    int qty;
+    double tCost;
+};
 #endif // STRUCTS_H

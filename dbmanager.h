@@ -20,7 +20,7 @@ public:
     bool addDistance(QString source, QString miles, QString destination );
 
     bool deleteRestaurant(QString id);
-    bool deleteMenuItem(QString id, QString parent);
+    bool deleteMenuItem(QString name, QString parent);
     bool removeRestaurant(int id);
     bool removeRestaurant(QString name);
     bool removeMenuItem(QString name);
@@ -46,7 +46,7 @@ public:
     void setRestDist(QString name, double dist);
     void setMenuSize(int size, int id) const;
 
-    bool editMenu(QString id, QString parent, const QString &namein, QString cost);
+    bool editMenu(QString parent, const QString &namein, QString cost);
     void setItemName(int id, QString newName);
     void setItemName(QString oldName, QString newName);
     void setItemPrice(int id, double price);

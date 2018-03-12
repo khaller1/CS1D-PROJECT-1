@@ -6,8 +6,10 @@
 #include <mainwindow.h>
 #include <structs.h>
 #include <restauranttable.h>
+#include <restauranttable2.h>
 #include <restView.h>
 #include <menuview.h>
 #include <login.h>
+#include <custom_trip.h>
 
 #endif // MAIN_H

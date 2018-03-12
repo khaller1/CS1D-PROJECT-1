@@ -1,5 +1,6 @@
 #include "launcher.h"
 #include "ui_launcher.h"
+#include <tripview.h>
 
 Launcher::Launcher(DataManager *inDM, QWidget *parent) :
     QMainWindow(parent),
@@ -42,5 +43,24 @@ void Launcher::on_AdminLogin_Button_clicked()
     login* admin = new login(DM, this);
     this->hide();
     admin->exec();
+    this->show();
+}
+void Launcher::on_QuickTrip_Button_clicked()
+{
+    TripView *QTrip;
+    DM->makeQuickTrip();
+    QTrip = new TripView(DM, this);
+    this->hide();
+    QTrip->show();
+    this->show();
+
+}
+
+void Launcher::on_CustomTrip_Button_clicked()
+{
+    Custom_Trip *cTrip;
+    cTrip = new Custom_Trip(DM, this);
+    this->hide();
+    cTrip->show();
     this->show();
 }

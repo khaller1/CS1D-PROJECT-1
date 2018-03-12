@@ -18,19 +18,28 @@ public:
     bool editRestaurant(QString id, const QString &namein, QString dist, QString size);
 
     void addRestStruct(QString id, const QString &namein, QString dist, QString size);
+    void addRestStruct(QString id, const QString &namein, QString dist, QString size, QVector<AllDist> dlist, QVector<Menu> menu);
     void editRestStruct(QString id, const QString &namein, QString dist, QString size);
     void deleteRestStruct(QString id);
 
     bool addMenu(QString id, QString parent, const QString &namein, QString cost);
     bool addMenu(QString parent, const QString &namein, QString cost);
-    bool editMenu(QString id, QString parent, const QString &namein, QString cost);
-    bool deleteMenu(QString id, QString parent);
+    bool editMenu(QString parent, const QString &namein, QString cost);
+    bool deleteMenu(QString name, QString parent);
 
     void addMenuStruct(QString parent, const QString &namein, QString cost);
     void editMenuStruct(QString id, QString parent, const QString &namein, QString cost);
-    void deleteMenuStruct(QString id, QString parent);
+    void editMenuStruct(QString parent, const QString &namein, QString cost);
+    void deleteMenuStruct(QString name, QString parent);
 
     bool addDist(QString source, QString miles, QString destination);
+    void getTrip(QVector<Restaurant> &oRest);
+    void makeQuickTrip();
+    void makeCustomTrip(QVector<Restaurant> &oRest);
+    void makeCustomStartTrip(Restaurant StartRest);
+    void EndTrip();
+
+    bool import();
 
 private:
     DbManager* DB;
@@ -38,6 +47,7 @@ private:
     QVector<Menu> inMenu;
     QVector<AllDist> inDist;
     QVector<AdminData> inAdmin;
+    QVector<Restaurant> qTrip;
 };
 
 #endif // DATAMANAGER_H

@@ -8,7 +8,14 @@ addRestaurant::addRestaurant(DataManager* inDM, QWidget *parent) :
 {
     DM = inDM;
     prev=parent;
+    DM->getRestaurants(R_Data);
+    rTable = new RestaurantTable(R_Data);
+    Proxy = new QSortFilterProxyModel(this);
+    Proxy->setSourceModel(rTable);
     ui->setupUi(this);
+    ui->tableView->setModel(Proxy);
+    ui->tableView->setSortingEnabled(true);
+
 }
 
 addRestaurant::~addRestaurant()
@@ -51,6 +58,12 @@ void addRestaurant::on_pushButton_edit_clicked()
     {
         QMessageBox::information(this, "Edit Restaurant", "Restaurant was successfully updated!");
         DM->editRestStruct(idnum, name, distance, menusize);
+        DM->getRestaurants(R_Data);
+        rTable = new RestaurantTable(R_Data);
+        Proxy = new QSortFilterProxyModel(this);
+        Proxy->setSourceModel(rTable);
+        ui->tableView->setModel(Proxy);
+        ui->tableView->setSortingEnabled(true);
     }
     else
         QMessageBox::warning(this, "Edit Restaurant", "Restaurant could not be updated!");
@@ -66,11 +79,18 @@ void addRestaurant::on_pushButton_delete_clicked()
     {
         QMessageBox::information(this, "Delete Restaurant", "Restaurant was successfully deleted!");
         DM->deleteRestStruct(idnum);
+        DM->getRestaurants(R_Data);
+        rTable = new RestaurantTable(R_Data);
+        Proxy = new QSortFilterProxyModel(this);
+        Proxy->setSourceModel(rTable);
+        ui->tableView->setModel(Proxy);
+        ui->tableView->setSortingEnabled(true);
     }
     else
     {
         QMessageBox::warning(this, "Delete Restaurant", "Restaurant could not be deleted!");
     }
+
 }
 
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
+    <width>718</width>
     <height>329</height>
    </rect>
   </property>
@@ -26,104 +26,140 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QFormLayout" name="formLayout">
-    <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="spacing">
-       <number>2</number>
-      </property>
-      <property name="bottomMargin">
-       <number>1</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>Next Restaurant</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QTableView" name="Trip_List"/>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="1">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="Menu_Tab">
-       <attribute name="title">
-        <string>Menu</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QTableView" name="Menu_List"/>
-            </item>
-           </layout>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>273</x>
+      <y>9</y>
+      <width>406</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="Menu_Tab">
+     <attribute name="title">
+      <string>Menu</string>
+     </attribute>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QTableView" name="Menu_List"/>
           </item>
          </layout>
         </item>
-        <item row="0" column="1">
-         <layout class="QVBoxLayout" name="verticalLayout_2">
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QComboBox" name="selector_box"/>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="qty_box"/>
-            </item>
-           </layout>
+           <widget class="QComboBox" name="selector_box"/>
           </item>
           <item>
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
+           <widget class="QSpinBox" name="qty_box"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>5</width>
+            <height>5</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="Dist">
+            <property name="text">
+             <string>Distance Traveled:</string>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>5</width>
-              <height>5</height>
-             </size>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="Total_Dist">
+            <property name="text">
+             <string/>
             </property>
-           </spacer>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Total: </string>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="Total_Label">
             <property name="text">
-             <string>Cost of item * qty goes here</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="text">
-             <string>Add To Cart</string>
+             <string/>
             </property>
            </widget>
           </item>
          </layout>
         </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="Cart_Tab">
-       <attribute name="title">
-        <string>Cart</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QTableView" name="Cart_Table"/>
+        <item>
+         <widget class="QPushButton" name="Cart_Button">
+          <property name="text">
+           <string>Add To Cart</string>
+          </property>
+         </widget>
         </item>
        </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="Cart_Tab">
+     <attribute name="title">
+      <string>Cart</string>
+     </attribute>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTableView" name="Cart_Table"/>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>2</number>
+     </property>
+     <property name="bottomMargin">
+      <number>1</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Next Restaurant</string>
+       </property>
       </widget>
-     </widget>
-    </item>
-   </layout>
+     </item>
+     <item>
+      <widget class="QTableView" name="Trip_List"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
  </widget>
  <resources/>

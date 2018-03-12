@@ -25,6 +25,10 @@ private slots:
 
     void on_AdminLogin_Button_clicked();
 
+    void on_QuickTrip_Button_clicked();
+
+    void on_CustomTrip_Button_clicked();
+
 private:
     Ui::Launcher *ui;
     DataManager* DM;

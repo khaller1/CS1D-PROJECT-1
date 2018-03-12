@@ -95,11 +95,11 @@ bool DbManager::editRest(QString id, const QString &namein, QString dist, QStrin
         qDebug() << "failed updating restaurant - " << query.lastError();
     return success;
 }
-bool DbManager::editMenu(QString id, QString parent, const QString &namein, QString cost)
+bool DbManager::editMenu(QString parent, const QString &namein, QString cost)
 {
     bool success=false;
     QSqlQuery query;
-    query.prepare("update menu set itemName = '"+namein+"', itemCost ='"+cost+"' where baseId= '"+id+"' and parentId = '"+parent+"'");
+    query.prepare("update menu set itemCost ='"+cost+"' where parentId = '"+parent+"' and itemName = '"+namein+"'");
     if(query.exec())
         success=true;
     else
@@ -128,11 +128,11 @@ bool DbManager::deleteRestaurant(QString id)
         qDebug() << "failed deleting restaurant - " << query.lastError();
     return success;
 }
-bool DbManager::deleteMenuItem(QString id, QString parent)
+bool DbManager::deleteMenuItem(QString name, QString parent)
 {
     bool success=false;
     QSqlQuery query;
-    query.prepare("delete from menu where baseId = '"+id+"' and parentId = '"+parent+"'");
+    query.prepare("delete from menu where itemName = '"+name+"' and parentId = '"+parent+"'");
     if(query.exec())
         success=true;
     else
@@ -637,7 +637,7 @@ bool DbManager::loadMenus(QVector<Menu>& vMenus){
 
 bool DbManager::loadDistances(QVector<AllDist>& vDistances){
     AllDist temp;
-    QSqlQuery query("SELECT * FROM menu");
+    QSqlQuery query("SELECT * FROM distance");
     query.exec();
 
       while(query.next())

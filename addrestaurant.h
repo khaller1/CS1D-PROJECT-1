@@ -26,7 +26,10 @@ private slots:
 
 private:
     Ui::addRestaurant *ui;
+    RestaurantTable *rTable;
     DataManager* DM;
+    QSortFilterProxyModel *Proxy;
+    QVector<Restaurant> R_Data;
     QWidget *prev;
 };
 

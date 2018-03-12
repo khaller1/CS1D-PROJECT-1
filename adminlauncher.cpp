@@ -3,6 +3,7 @@
 #include <addrestaurant.h>
 #include <addmenu.h>
 #include <adddistance.h>
+#include <QMessageBox>
 adminLauncher::adminLauncher(DataManager* inDM, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::adminLauncher)
@@ -63,4 +64,13 @@ void adminLauncher::on_pushButton_3_clicked()
     adddistance *dist;
     dist = new adddistance(DM, this);
     dist->exec();
+}
+
+void adminLauncher::on_pushButton_import_clicked()
+{
+    bool success = DM->import();
+    if(success)
+        QMessageBox::information(this, "Import Text File", "Successfully imported restaurants!");
+    else
+        QMessageBox::warning(this, "Import Text File", "Error: Could not import from text file.");
 }

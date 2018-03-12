@@ -14,6 +14,7 @@ class addMenu : public QDialog
 public:
     explicit addMenu(DataManager* inDM, QWidget *parent = 0);
     ~addMenu();
+    void genComboList();
 
 private slots:
     void on_pushButton_add_clicked();
@@ -24,10 +25,16 @@ private slots:
 
     void on_pushButton_exit_clicked();
 
+    void on_ViewMenu_clicked();
+
 private:
     Ui::addMenu *ui;
     QWidget *prev;
     DataManager* DM;
+    QStringList combo;
+    QVector<Restaurant> R_Data;
+    menuTable* M_Table;
+    QSortFilterProxyModel *Proxy;
 };
 
 #endif // ADDMENU_H

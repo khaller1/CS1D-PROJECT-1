@@ -225,6 +225,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButton_import">
+        <property name="text">
+         <string>Import text</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButton_addmenu">
         <property name="text">
          <string>Add Menu Item</string>

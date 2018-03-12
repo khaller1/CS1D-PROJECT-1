@@ -33,6 +33,7 @@ public:
     QPushButton *QuickTrip_Button;
     QPushButton *CustomTrip_Button;
     QPushButton *pushButton;
+    QPushButton *pushButton_import;
     QPushButton *pushButton_addmenu;
     QPushButton *pushButton_3;
     QPushButton *Exit_Button;
@@ -114,6 +115,11 @@ public:
 
         verticalLayout->addWidget(pushButton);
 
+        pushButton_import = new QPushButton(Launcher_2);
+        pushButton_import->setObjectName(QStringLiteral("pushButton_import"));
+
+        verticalLayout->addWidget(pushButton_import);
+
         pushButton_addmenu = new QPushButton(Launcher_2);
         pushButton_addmenu->setObjectName(QStringLiteral("pushButton_addmenu"));
 
@@ -152,6 +158,7 @@ public:
         QuickTrip_Button->setText(QApplication::translate("adminLauncher", "Quick Trip", 0));
         CustomTrip_Button->setText(QApplication::translate("adminLauncher", "Custom Trip", 0));
         pushButton->setText(QApplication::translate("adminLauncher", "Add Restaurant", 0));
+        pushButton_import->setText(QApplication::translate("adminLauncher", "Import text", 0));
         pushButton_addmenu->setText(QApplication::translate("adminLauncher", "Add Menu Item", 0));
         pushButton_3->setText(QApplication::translate("adminLauncher", "Add Distance", 0));
         Exit_Button->setText(QApplication::translate("adminLauncher", "Exit", 0));

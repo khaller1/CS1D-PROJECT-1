@@ -37,7 +37,11 @@ SOURCES += \
     adminlauncher.cpp \
     addrestaurant.cpp \
     addmenu.cpp \
-    adddistance.cpp
+    adddistance.cpp \
+    carttable.cpp \
+    triptable.cpp \
+    custom_trip.cpp \
+    customtrip_table.cpp
 
 HEADERS += \
         launcher.h \
@@ -54,7 +58,11 @@ HEADERS += \
     adminlauncher.h \
     addrestaurant.h \
     addmenu.h \
-    adddistance.h
+    adddistance.h \
+    carttable.h \
+    triptable.h \
+    custom_trip.h \
+    customtrip_table.h
 
 FORMS += \
         launcher.ui \
@@ -65,4 +73,5 @@ FORMS += \
     adminlauncher.ui \
     addrestaurant.ui \
     addmenu.ui \
-    adddistance.ui
+    adddistance.ui \
+    custom_trip.ui

@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -34,10 +33,6 @@ class Ui_TripView
 {
 public:
     QWidget *centralwidget;
-    QFormLayout *formLayout;
-    QVBoxLayout *verticalLayout;
-    QPushButton *pushButton;
-    QTableView *Trip_List;
     QTabWidget *tabWidget;
     QWidget *Menu_Tab;
     QGridLayout *gridLayout_3;
@@ -49,17 +44,26 @@ public:
     QComboBox *selector_box;
     QSpinBox *qty_box;
     QSpacerItem *verticalSpacer;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *Dist;
+    QLabel *Total_Dist;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label;
     QLabel *Total_Label;
-    QPushButton *pushButton_2;
+    QPushButton *Cart_Button;
     QWidget *Cart_Tab;
     QGridLayout *gridLayout;
     QTableView *Cart_Table;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QPushButton *pushButton;
+    QTableView *Trip_List;
 
     void setupUi(QMainWindow *TripView)
     {
         if (TripView->objectName().isEmpty())
             TripView->setObjectName(QStringLiteral("TripView"));
-        TripView->resize(740, 329);
+        TripView->resize(718, 329);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(1);
@@ -68,27 +72,9 @@ public:
         TripView->setMinimumSize(QSize(0, 0));
         centralwidget = new QWidget(TripView);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        formLayout = new QFormLayout(centralwidget);
-        formLayout->setObjectName(QStringLiteral("formLayout"));
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(2);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(-1, -1, -1, 1);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-
-        verticalLayout->addWidget(pushButton);
-
-        Trip_List = new QTableView(centralwidget);
-        Trip_List->setObjectName(QStringLiteral("Trip_List"));
-
-        verticalLayout->addWidget(Trip_List);
-
-
-        formLayout->setLayout(0, QFormLayout::LabelRole, verticalLayout);
-
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
+        tabWidget->setGeometry(QRect(273, 9, 406, 241));
         Menu_Tab = new QWidget();
         Menu_Tab->setObjectName(QStringLiteral("Menu_Tab"));
         gridLayout_3 = new QGridLayout(Menu_Tab);
@@ -129,15 +115,41 @@ public:
 
         verticalLayout_2->addItem(verticalSpacer);
 
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        Dist = new QLabel(Menu_Tab);
+        Dist->setObjectName(QStringLiteral("Dist"));
+
+        horizontalLayout_3->addWidget(Dist);
+
+        Total_Dist = new QLabel(Menu_Tab);
+        Total_Dist->setObjectName(QStringLiteral("Total_Dist"));
+
+        horizontalLayout_3->addWidget(Total_Dist);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_3);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        label = new QLabel(Menu_Tab);
+        label->setObjectName(QStringLiteral("label"));
+
+        horizontalLayout_4->addWidget(label);
+
         Total_Label = new QLabel(Menu_Tab);
         Total_Label->setObjectName(QStringLiteral("Total_Label"));
 
-        verticalLayout_2->addWidget(Total_Label);
+        horizontalLayout_4->addWidget(Total_Label);
 
-        pushButton_2 = new QPushButton(Menu_Tab);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
 
-        verticalLayout_2->addWidget(pushButton_2);
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        Cart_Button = new QPushButton(Menu_Tab);
+        Cart_Button->setObjectName(QStringLiteral("Cart_Button"));
+
+        verticalLayout_2->addWidget(Cart_Button);
 
 
         gridLayout_3->addLayout(verticalLayout_2, 0, 1, 1, 1);
@@ -153,14 +165,27 @@ public:
         gridLayout->addWidget(Cart_Table, 0, 0, 1, 1);
 
         tabWidget->addTab(Cart_Tab, QString());
+        widget = new QWidget(centralwidget);
+        widget->setObjectName(QStringLiteral("widget"));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setSpacing(2);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 1);
+        pushButton = new QPushButton(widget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, tabWidget);
+        verticalLayout->addWidget(pushButton);
+
+        Trip_List = new QTableView(widget);
+        Trip_List->setObjectName(QStringLiteral("Trip_List"));
+
+        verticalLayout->addWidget(Trip_List);
 
         TripView->setCentralWidget(centralwidget);
 
         retranslateUi(TripView);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(TripView);
@@ -169,11 +194,14 @@ public:
     void retranslateUi(QMainWindow *TripView)
     {
         TripView->setWindowTitle(QApplication::translate("TripView", "MainWindow", 0));
-        pushButton->setText(QApplication::translate("TripView", "Next Restaurant", 0));
-        Total_Label->setText(QApplication::translate("TripView", "Cost of item * qty goes here", 0));
-        pushButton_2->setText(QApplication::translate("TripView", "Add To Cart", 0));
+        Dist->setText(QApplication::translate("TripView", "Distance Traveled:", 0));
+        Total_Dist->setText(QString());
+        label->setText(QApplication::translate("TripView", "Total: ", 0));
+        Total_Label->setText(QString());
+        Cart_Button->setText(QApplication::translate("TripView", "Add To Cart", 0));
         tabWidget->setTabText(tabWidget->indexOf(Menu_Tab), QApplication::translate("TripView", "Menu", 0));
         tabWidget->setTabText(tabWidget->indexOf(Cart_Tab), QApplication::translate("TripView", "Cart", 0));
+        pushButton->setText(QApplication::translate("TripView", "Next Restaurant", 0));
     } // retranslateUi
 
 };
