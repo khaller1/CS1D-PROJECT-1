@@ -23,22 +23,22 @@ addRestaurant::~addRestaurant()
     delete ui;
 }
 
-void addRestaurant::on_pushButton_clicked()
-{
-    QString name = ui->lineEdit_name->text();
-    QString idnum = ui->lineEdit_id->text();
-    QString distance = ui->lineEdit_distance->text();
-    QString menusize = ui->lineEdit_menu->text();
+//void addRestaurant::on_pushButton_clicked()
+//{
+//    QString name = ui->lineEdit_name->text();
+//    QString idnum = ui->lineEdit_id->text();
+//    QString distance = ui->lineEdit_distance->text();
+//    QString menusize = ui->lineEdit_menu->text();
 
-    bool check = DM->addRestaurant(idnum, name, distance, menusize);
-    if(check)
-    {
-        QMessageBox::information(this, "Add Restaurant", "Restaurant was successfully added!");
-        DM->addRestStruct(idnum, name, distance, menusize);
-    }
-    else
-        QMessageBox::warning(this, "Add Restaurant", "Restaurant could not be added!");
-}
+//    bool check = DM->addRestaurant(idnum, name, distance, menusize);
+//    if(check)
+//    {
+//        QMessageBox::information(this, "Add Restaurant", "Restaurant was successfully added!");
+//        DM->addRestStruct(idnum, name, distance, menusize);
+//    }
+//    else
+//        QMessageBox::warning(this, "Add Restaurant", "Restaurant could not be added!");
+//}
 
 void addRestaurant::on_pushButton_exit_clicked()
 {
@@ -46,29 +46,29 @@ void addRestaurant::on_pushButton_exit_clicked()
     prev->show();
 }
 
-void addRestaurant::on_pushButton_edit_clicked()
-{
-    QString name = ui->lineEdit_name->text();
-    QString idnum = ui->lineEdit_id->text();
-    QString distance = ui->lineEdit_distance->text();
-    QString menusize = ui->lineEdit_menu->text();
+//void addRestaurant::on_pushButton_edit_clicked()
+//{
+//    QString name = ui->lineEdit_name->text();
+//    QString idnum = ui->lineEdit_id->text();
+//    QString distance = ui->lineEdit_distance->text();
+//    QString menusize = ui->lineEdit_menu->text();
 
-    bool check = DM->editRestaurant(idnum, name, distance, menusize);
-    if(check)
-    {
-        QMessageBox::information(this, "Edit Restaurant", "Restaurant was successfully updated!");
-        DM->editRestStruct(idnum, name, distance, menusize);
-        DM->getRestaurants(R_Data);
-        rTable = new RestaurantTable(R_Data);
-        Proxy = new QSortFilterProxyModel(this);
-        Proxy->setSourceModel(rTable);
-        ui->tableView->setModel(Proxy);
-        ui->tableView->setSortingEnabled(true);
-    }
-    else
-        QMessageBox::warning(this, "Edit Restaurant", "Restaurant could not be updated!");
+//    bool check = DM->editRestaurant(idnum, name, distance, menusize);
+//    if(check)
+//    {
+//        QMessageBox::information(this, "Edit Restaurant", "Restaurant was successfully updated!");
+//        DM->editRestStruct(idnum, name, distance, menusize);
+//        DM->getRestaurants(R_Data);
+//        rTable = new RestaurantTable(R_Data);
+//        Proxy = new QSortFilterProxyModel(this);
+//        Proxy->setSourceModel(rTable);
+//        ui->tableView->setModel(Proxy);
+//        ui->tableView->setSortingEnabled(true);
+//    }
+//    else
+//        QMessageBox::warning(this, "Edit Restaurant", "Restaurant could not be updated!");
 
-}
+//}
 
 void addRestaurant::on_pushButton_delete_clicked()
 {

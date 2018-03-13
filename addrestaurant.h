@@ -16,11 +16,11 @@ public:
     ~addRestaurant();
 
 private slots:
-    void on_pushButton_clicked();
+   // void on_pushButton_clicked();
 
     void on_pushButton_exit_clicked();
 
-    void on_pushButton_edit_clicked();
+    //void on_pushButton_edit_clicked();
 
     void on_pushButton_delete_clicked();
 

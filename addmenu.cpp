@@ -74,7 +74,6 @@ void addMenu::on_pushButton_delete_clicked()
     if(check)
     {
         DM->deleteMenuStruct(name, parentid);
-        QMessageBox::information(this, "Delete Menu Item", "item was successfully deleted!");
     }
 }
 
