@@ -75,10 +75,11 @@ void addRestaurant::on_pushButton_delete_clicked()
     QString idnum = ui->lineEdit_id->text();
 
     bool check = DM->deleteRestaurant(idnum);
+    check = DM->deleteRestStruct(idnum);
     if(check)
     {
         QMessageBox::information(this, "Delete Restaurant", "Restaurant was successfully deleted!");
-        DM->deleteRestStruct(idnum);
+       //R DM->deleteRestStruct(idnum);
         DM->getRestaurants(R_Data);
         rTable = new RestaurantTable(R_Data);
         Proxy = new QSortFilterProxyModel(this);

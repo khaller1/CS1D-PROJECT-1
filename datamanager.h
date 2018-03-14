@@ -23,17 +23,17 @@ public:
     void addRestStruct(QString id, const QString &namein, QString dist, QString size); /// Adds Struct to the data
     void addRestStruct(QString id, const QString &namein, QString dist, QString size, QVector<AllDist> dlist, QVector<Menu> menu); /// Adds struct to the data
     void editRestStruct(QString id, const QString &namein, QString dist, QString size); /// Edits a restaurant struct
-    void deleteRestStruct(QString id); /// Deletes restaurant from data set
+    bool deleteRestStruct(QString id); /// Deletes restaurant from data set
 
     bool addMenu(QString id, QString parent, const QString &namein, QString cost); /// Adds menu item to DB
     bool addMenu(QString parent, const QString &namein, QString cost); /// Adds menu item to DB
     bool editMenu(QString parent, const QString &namein, QString cost); /// Edits menu item
     bool deleteMenu(QString name, QString parent); /// Deletes menu item
 
-    void addMenuStruct(QString parent, const QString &namein, QString cost); /// Adds menu struct to data
-    void editMenuStruct(QString id, QString parent, const QString &namein, QString cost); /// Edits menu struct in data
-    void editMenuStruct(QString parent, const QString &namein, QString cost); /// Edits menu struct in data
-    void deleteMenuStruct(QString name, QString parent); /// Deletes menu struct in data
+    bool addMenuStruct(QString parent, const QString &namein, QString cost); /// Adds menu struct to data
+    bool editMenuStruct(QString id, QString parent, const QString &namein, QString cost); /// Edits menu struct in data
+    bool editMenuStruct(QString parent, const QString &namein, QString cost); /// Edits menu struct in data
+    bool deleteMenuStruct(QString name, QString parent); /// Deletes menu struct in data
 
     bool addDist(QString source, QString miles, QString destination); /// Adds dist to DB
     void getTrip(QVector<Restaurant> &oRest); /// Returns current trip values
@@ -43,7 +43,7 @@ public:
     void EndTrip(); /// Clears current trip
 
     bool import(); /// Imports new data from .txt source
-    void helper(int id);
+    void helper(int id, AllDist in);
 
 private:
     DbManager* DB; /// Persistent Data

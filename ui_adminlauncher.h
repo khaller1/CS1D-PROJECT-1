@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'adminlauncher.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -33,9 +33,8 @@ public:
     QPushButton *QuickTrip_Button;
     QPushButton *CustomTrip_Button;
     QPushButton *pushButton;
-    QPushButton *pushButton_import;
     QPushButton *pushButton_addmenu;
-    QPushButton *pushButton_3;
+    QPushButton *pushButton_import;
     QPushButton *Exit_Button;
 
     void setupUi(QDialog *adminLauncher)
@@ -115,20 +114,15 @@ public:
 
         verticalLayout->addWidget(pushButton);
 
-        pushButton_import = new QPushButton(Launcher_2);
-        pushButton_import->setObjectName(QStringLiteral("pushButton_import"));
-
-        verticalLayout->addWidget(pushButton_import);
-
         pushButton_addmenu = new QPushButton(Launcher_2);
         pushButton_addmenu->setObjectName(QStringLiteral("pushButton_addmenu"));
 
         verticalLayout->addWidget(pushButton_addmenu);
 
-        pushButton_3 = new QPushButton(Launcher_2);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_import = new QPushButton(Launcher_2);
+        pushButton_import->setObjectName(QStringLiteral("pushButton_import"));
 
-        verticalLayout->addWidget(pushButton_3);
+        verticalLayout->addWidget(pushButton_import);
 
         Exit_Button = new QPushButton(Launcher_2);
         Exit_Button->setObjectName(QStringLiteral("Exit_Button"));
@@ -152,16 +146,15 @@ public:
 
     void retranslateUi(QDialog *adminLauncher)
     {
-        adminLauncher->setWindowTitle(QApplication::translate("adminLauncher", "Dialog", 0));
-        ViewRestaurant_Button->setText(QApplication::translate("adminLauncher", "View Restaurant's", 0));
-        ViewMenu_Button->setText(QApplication::translate("adminLauncher", "View Menu's", 0));
-        QuickTrip_Button->setText(QApplication::translate("adminLauncher", "Quick Trip", 0));
-        CustomTrip_Button->setText(QApplication::translate("adminLauncher", "Custom Trip", 0));
-        pushButton->setText(QApplication::translate("adminLauncher", "Add Restaurant", 0));
-        pushButton_import->setText(QApplication::translate("adminLauncher", "Import text", 0));
-        pushButton_addmenu->setText(QApplication::translate("adminLauncher", "Add Menu Item", 0));
-        pushButton_3->setText(QApplication::translate("adminLauncher", "Add Distance", 0));
-        Exit_Button->setText(QApplication::translate("adminLauncher", "Exit", 0));
+        adminLauncher->setWindowTitle(QApplication::translate("adminLauncher", "Dialog", nullptr));
+        ViewRestaurant_Button->setText(QApplication::translate("adminLauncher", "View Restaurant's", nullptr));
+        ViewMenu_Button->setText(QApplication::translate("adminLauncher", "View Menu's", nullptr));
+        QuickTrip_Button->setText(QApplication::translate("adminLauncher", "Quick Trip", nullptr));
+        CustomTrip_Button->setText(QApplication::translate("adminLauncher", "Custom Trip", nullptr));
+        pushButton->setText(QApplication::translate("adminLauncher", "Edit Restaurant", nullptr));
+        pushButton_addmenu->setText(QApplication::translate("adminLauncher", "Edit Menu Item", nullptr));
+        pushButton_import->setText(QApplication::translate("adminLauncher", "Import text", nullptr));
+        Exit_Button->setText(QApplication::translate("adminLauncher", "Exit", nullptr));
     } // retranslateUi
 
 };

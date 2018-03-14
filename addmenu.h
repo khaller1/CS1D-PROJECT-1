@@ -17,15 +17,15 @@ public:
     void genComboList();
 
 private slots:
-    void on_pushButton_add_clicked();
+    void on_pushButton_add_clicked();               //adds a menu item
 
-    void on_pushButton_edit_clicked();
+    void on_pushButton_edit_clicked();              //edits a menu item
 
-    void on_pushButton_delete_clicked();
+    void on_pushButton_delete_clicked();            //deletes a menu item
 
-    void on_pushButton_exit_clicked();
+    void on_pushButton_exit_clicked();              //exits window
 
-    void on_ViewMenu_clicked();
+    void on_ViewMenu_clicked();                     //displays menu
 
 private:
     Ui::addMenu *ui;

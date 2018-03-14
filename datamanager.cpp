@@ -158,16 +158,18 @@ void DataManager::editRestStruct(QString id, const QString &namein, QString dist
     }
     inRest.push_back(temp);
 }
-void DataManager::deleteRestStruct(QString id)
+bool DataManager::deleteRestStruct(QString id)
 {
+    bool check=false;
     for(int i=0;i<inRest.length();i++)
     {
         if(inRest[i].idNum==id.toInt())
         {
             inRest.remove(i);
+            check=true;
         }
     }
-    qDebug() << "end of loop";
+    return check;
 }
 bool DataManager::editMenu(QString parent, const QString &namein, QString cost)
 {
@@ -178,12 +180,12 @@ bool DataManager::deleteMenu(QString name, QString parent)
     return DB->deleteMenuItem(name, parent);
 }
 
-void DataManager::addMenuStruct(QString parent, const QString &namein, QString cost)
+bool DataManager::addMenuStruct(QString parent, const QString &namein, QString cost)
 {
     int parentid = parent.toInt();
     QString name = namein;
     double price = cost.toDouble();
-
+    bool check=false;
     Menu temp;
     temp.cost=price;
     temp.name=name;
@@ -194,16 +196,18 @@ void DataManager::addMenuStruct(QString parent, const QString &namein, QString c
         if(inRest.at(i).idNum==parentid)
         {
             inRest[i].RMenu.push_back(temp);
+            check=true;
         }
     }
+    return check;
 }
-void DataManager::editMenuStruct(QString id, QString parent, const QString &namein, QString cost)
+bool DataManager::editMenuStruct(QString id, QString parent, const QString &namein, QString cost)
 {
     int idnum = id.toInt();
     int parentid = parent.toInt();
     QString name = namein;
     double price = cost.toDouble();
-
+    bool check=false;
     Menu temp;
     temp.baseid=idnum;
     temp.cost=price;
@@ -216,15 +220,17 @@ void DataManager::editMenuStruct(QString id, QString parent, const QString &name
         {
             inMenu.remove(i);
             inMenu.push_back(temp);
+            check=true;
         }
     }
+    return check;
 }
-void DataManager::editMenuStruct(QString parent, const QString &namein, QString cost)
+bool DataManager::editMenuStruct(QString parent, const QString &namein, QString cost)
 {
     int parentid = parent.toInt();
     QString name = namein;
     double price = cost.toDouble();
-
+    bool check=false;
     for(int i=0;i<inRest.length();i++)
     {
         if(inRest[i].idNum==parentid)
@@ -234,16 +240,18 @@ void DataManager::editMenuStruct(QString parent, const QString &namein, QString 
                 if(inRest[i].RMenu[x].name==name)
                 {
                     inRest[i].RMenu[x].cost=price;
+                    check=true;
                 }
             }
         }
     }
+    return check;
 }
 
-void DataManager::deleteMenuStruct(QString name, QString parent)
+bool DataManager::deleteMenuStruct(QString name, QString parent)
 {
     int parentid = parent.toInt();
-
+    bool check=false;
     for(int i=0; i<inRest.length();i++)
     {
         if(inRest[i].idNum==parentid)
@@ -251,10 +259,14 @@ void DataManager::deleteMenuStruct(QString name, QString parent)
             for(int x=0;x<inRest[i].RMenu.length();x++)
             {
                 if(inRest[i].RMenu[x].name==name)
+                {
                     inRest[i].RMenu.remove(x);
+                    check=true;
+                }
             }
         }
     }
+    return check;
 }
 bool DataManager::addDist(QString source, QString miles, QString destination)
 {
@@ -390,14 +402,11 @@ bool DataManager::import()
         {
             name = in.readLine();
             name=name.remove(0,30);
-            qDebug() << name;
             num = in.readLine();
             num = num.remove(0, 28);
-            qDebug() << num;
             QString temp = in.readLine();
             temp = temp.remove(0, 50);
             distcount = temp.toInt();
-            qDebug() << temp;
             QVector<AllDist> dlist;
             QVector<Menu> rmenu;
             for(int i=1;i<=distcount;i++)
@@ -405,18 +414,35 @@ bool DataManager::import()
                 QString dst;
                 QString miles;
                 AllDist temp;
+                AllDist temp2;
                 if(i!=num.toInt())
                 {
                 in >> dst;
                 in >> miles;
                 dst = dst.trimmed();
+                //qDebug() << dst << " " << dst.toInt();
                 miles = miles.trimmed();
                 temp.destID=dst.toInt();
                 temp.sourceID=num.toInt();
                 temp.dist=dist.toDouble();
+
+                temp2.destID=temp.sourceID;
+                temp2.sourceID=temp.destID;
+                temp2.dist=temp.dist;
+
+                for(int h=0;h<inRest.length();h++)
+                {
+                    if(inRest[h].idNum==temp2.sourceID)
+                    {
+                        inRest[h].DList.push_back(temp2);
+                    }
+                }
+                id = dst.toInt();
+
                 dlist.push_back(temp);
-                qDebug() << dst;
-                qDebug() << miles;
+               // helper(id, temp2);
+                //inDist.push_back(temp2);
+
                 addDist(num, miles, dst);
                 addDist(dst, miles, num);
                 }
@@ -424,17 +450,14 @@ bool DataManager::import()
             }
             sbDist=in.readLine();
             sbDist = sbDist.remove(4,sbDist.length()-1);
-            qDebug() << sbDist;
             menucount = in.readLine();
             menucount=menucount.remove(1,menucount.length()-1);
-            qDebug() << menucount;
+
             for(int i=0; i<menucount.toInt(); i++)
             {
                 Menu temp;
                 menuitem=in.readLine();
-                qDebug() << menuitem;
                 menucost=in.readLine();
-                qDebug() << menucost;
                 temp.parentID=num.toInt();
                 temp.name=menuitem;
                 temp.cost=menucost.toDouble();
@@ -444,7 +467,7 @@ bool DataManager::import()
             }
             addRestaurant(num, name, sbDist, menucount);
             addRestStruct(num, name, sbDist, menucount, dlist, rmenu);
-            helper(num.toInt());
+
             in.readLine();
             in.readLine();
         }
@@ -452,25 +475,22 @@ bool DataManager::import()
     return success;
 }
 
-void DataManager::helper(int id)
+void DataManager::helper(int id, AllDist in)
 {
     for(int i=0;i<inRest.length();i++)
     {
         if(inRest[i].idNum==id)
         {
-            AllDist temp;
-            for(int p=0;p<inRest[i].DList.length();p++)
+            inRest[i].DList.push_back(in);
+        }
+    }
+    for(int i=0;i<inRest.length();i++)
+    {
+        if(inRest[i].idNum==id)
+        {
+            for(int x=0;x<inRest[i].DList.length();x++)
             {
-                temp = inRest[i].DList[p];
-                for(int x=0;x<inRest.length();x++)
-                {
-                    if(inRest[x].idNum==x)
-                    {
-                        qDebug() << "push";
-                        inRest[x].DList.push_back(temp);
-                        DB->addDistance(temp.sourceID, temp.dist, temp.destID);
-                    }
-                }
+                qDebug() << inRest[i].DList[x].sourceID << " " << inRest[i].DList[x].dist << " " << inRest[i].DList[x].destID;
             }
         }
     }

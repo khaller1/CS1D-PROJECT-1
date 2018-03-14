@@ -12,24 +12,24 @@ class DbManager
 public:
     DbManager(const QString& path);
     ~DbManager();
-    bool addRestaurant(QString id, const QString &namein, QString dist, QString size);
-    bool addRestaurant(const QString &namein, QString dist, QString size);
-    bool addMenuItem(QString id, QString parent, const QString &namein, QString cost);
-    bool addMenuItem(QString parent, const QString &namein, QString cost);
-    bool addDistance(int source, double miles, int destination );
-    bool addDistance(QString source, QString miles, QString destination );
+    bool addRestaurant(QString id, const QString &namein, QString dist, QString size);      //adds restaurant to restaurant table in db
+    bool addRestaurant(const QString &namein, QString dist, QString size);                  //adds restaurant to restaurant table in db
+    bool addMenuItem(QString id, QString parent, const QString &namein, QString cost);      //adds menu to menu table in db
+    bool addMenuItem(QString parent, const QString &namein, QString cost);                  //adds menu to menu table in db
+    bool addDistance(int source, double miles, int destination );                           //adds distance to distance table in db
+    bool addDistance(QString source, QString miles, QString destination );                  //adds distance to distance table in db
 
-    bool deleteRestaurant(QString id);
-    bool deleteMenuItem(QString name, QString parent);
-    bool removeRestaurant(int id);
-    bool removeRestaurant(QString name);
-    bool removeMenuItem(QString name);
-    bool removeMenuItem(int id);
-    bool removeDistance(int id);
-    bool removeDistance(int src, int dst);
+    bool deleteRestaurant(QString id);                                                      //deletes restaurant from restaurant table in db
+    bool deleteMenuItem(QString name, QString parent);                                      //deletes menu from menu table in db
+    bool removeRestaurant(int id);                                                          //deletes restaurant from restaurant table in db
+    bool removeRestaurant(QString name);                                                    //deletes restaurant from restaurant table in db
+    bool removeMenuItem(QString name);                                                      //deletes menu from menu table in db
+    bool removeMenuItem(int id);                                                            //deletes menu from menu table in db
+    bool removeDistance(int id);                                                            //deletes distance from distance table in db
+    bool removeDistance(int src, int dst);                                                  //deletes distance from distance table in db
 
-    bool restaurantExists(int id) const;
-    bool restaurantExists(QString name) const;
+    bool restaurantExists(int id) const;                                                    //checks if restaurant exists
+    bool restaurantExists(QString name) const;                                              //checks if restaurant exists
     bool menuItemExists(int id) const;
     bool menuItemExists(QString name) const;
     bool distanceExists(int id) const;

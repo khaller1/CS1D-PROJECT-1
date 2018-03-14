@@ -31,10 +31,18 @@ void addMenu::on_pushButton_add_clicked()
     QString cost = ui->lineEdit_cost->text();
 
     bool check = DM->addMenu(parentid, name, cost);
+    check = DM->addMenuStruct(parentid, name, cost);
     if(check)
     {
         QMessageBox::information(this, "Add Menu Item", "item was successfully added!");
-        DM->addMenuStruct(parentid, name, cost);
+        DM->getRestaurants(R_Data);
+        int i;
+        i = ui->RestaurantCombo->currentIndex();
+        M_Table = new menuTable(R_Data[i].RMenu);
+        Proxy->setSourceModel(M_Table);
+        ui->MenuTable->reset();
+        ui->MenuTable->setModel(Proxy);
+
     }
     else
     {
@@ -49,14 +57,19 @@ void addMenu::on_pushButton_edit_clicked()
     QString cost = ui->lineEdit_cost->text();
 
     bool check = DM->editMenu(baseid, name, cost);
+    check = DM->editMenuStruct(baseid, name, cost);
     if(check)
     {
-        DM->editMenuStruct(baseid, name, cost);
+
         QMessageBox::information(this, "Edit Menu Item", "item was successfully updated!");
         DM->getRestaurants(R_Data);
-       // this->genComboList();
-        Proxy = new QSortFilterProxyModel(this);
-        ui->RestaurantCombo->addItems(combo);
+        int i;
+        i = ui->RestaurantCombo->currentIndex();
+        M_Table = new menuTable(R_Data[i].RMenu);
+        Proxy->setSourceModel(M_Table);
+        ui->MenuTable->reset();
+        ui->MenuTable->setModel(Proxy);
+
     }
     else
     {
@@ -70,10 +83,23 @@ void addMenu::on_pushButton_delete_clicked()
     QString name = ui->lineEdit_name->text();
 
     bool check = DM->deleteMenu(name, parentid);
+    check = DM->deleteMenuStruct(name, parentid);
 
     if(check)
     {
-        DM->deleteMenuStruct(name, parentid);
+        QMessageBox::information(this, "Delete Menu Item", "item was successfully deleted!");
+        DM->getRestaurants(R_Data);
+        int i;
+        i = ui->RestaurantCombo->currentIndex();
+        M_Table = new menuTable(R_Data[i].RMenu);
+        Proxy->setSourceModel(M_Table);
+        ui->MenuTable->reset();
+        ui->MenuTable->setModel(Proxy);
+
+    }
+    else
+    {
+        QMessageBox::warning(this, "Delete Menu Item", "item couldn't be deleted!");
     }
 }
 

@@ -18,11 +18,11 @@ public:
 private slots:
    // void on_pushButton_clicked();
 
-    void on_pushButton_exit_clicked();
+    void on_pushButton_exit_clicked();          //exits window
 
-    //void on_pushButton_edit_clicked();
+    //void on_pushButton_edit_clicked();        //edits a restaurant information
 
-    void on_pushButton_delete_clicked();
+    void on_pushButton_delete_clicked();        //deletes a restaurant
 
 private:
     Ui::addRestaurant *ui;
