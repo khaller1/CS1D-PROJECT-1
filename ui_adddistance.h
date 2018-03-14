@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'adddistance.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -128,12 +128,12 @@ public:
 
     void retranslateUi(QDialog *adddistance)
     {
-        adddistance->setWindowTitle(QApplication::translate("adddistance", "Dialog", 0));
-        label->setText(QApplication::translate("adddistance", "Source ID", 0));
-        label_2->setText(QApplication::translate("adddistance", "Miles", 0));
-        label_3->setText(QApplication::translate("adddistance", "Destination ID", 0));
-        pushButton_add->setText(QApplication::translate("adddistance", "Add", 0));
-        pushButton_exit->setText(QApplication::translate("adddistance", "Exit", 0));
+        adddistance->setWindowTitle(QApplication::translate("adddistance", "Dialog", nullptr));
+        label->setText(QApplication::translate("adddistance", "Source ID", nullptr));
+        label_2->setText(QApplication::translate("adddistance", "Miles", nullptr));
+        label_3->setText(QApplication::translate("adddistance", "Destination ID", nullptr));
+        pushButton_add->setText(QApplication::translate("adddistance", "Add", nullptr));
+        pushButton_exit->setText(QApplication::translate("adddistance", "Exit", nullptr));
     } // retranslateUi
 
 };

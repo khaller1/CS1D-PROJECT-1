@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'tripview.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -193,15 +193,15 @@ public:
 
     void retranslateUi(QMainWindow *TripView)
     {
-        TripView->setWindowTitle(QApplication::translate("TripView", "MainWindow", 0));
-        Dist->setText(QApplication::translate("TripView", "Distance Traveled:", 0));
+        TripView->setWindowTitle(QApplication::translate("TripView", "MainWindow", nullptr));
+        Dist->setText(QApplication::translate("TripView", "Distance Traveled:", nullptr));
         Total_Dist->setText(QString());
-        label->setText(QApplication::translate("TripView", "Total: ", 0));
+        label->setText(QApplication::translate("TripView", "Total: ", nullptr));
         Total_Label->setText(QString());
-        Cart_Button->setText(QApplication::translate("TripView", "Add To Cart", 0));
-        tabWidget->setTabText(tabWidget->indexOf(Menu_Tab), QApplication::translate("TripView", "Menu", 0));
-        tabWidget->setTabText(tabWidget->indexOf(Cart_Tab), QApplication::translate("TripView", "Cart", 0));
-        pushButton->setText(QApplication::translate("TripView", "Next Restaurant", 0));
+        Cart_Button->setText(QApplication::translate("TripView", "Add To Cart", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(Menu_Tab), QApplication::translate("TripView", "Menu", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(Cart_Tab), QApplication::translate("TripView", "Cart", nullptr));
+        pushButton->setText(QApplication::translate("TripView", "Next Restaurant", nullptr));
     } // retranslateUi
 
 };

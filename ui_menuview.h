@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'menuview.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -75,9 +75,9 @@ public:
 
     void retranslateUi(QDialog *MenuView)
     {
-        MenuView->setWindowTitle(QApplication::translate("MenuView", "Dialog", 0));
-        ViewMenu->setText(QApplication::translate("MenuView", "View Menu", 0));
-        pushButton->setText(QApplication::translate("MenuView", "Close", 0));
+        MenuView->setWindowTitle(QApplication::translate("MenuView", "Dialog", nullptr));
+        ViewMenu->setText(QApplication::translate("MenuView", "View Menu", nullptr));
+        pushButton->setText(QApplication::translate("MenuView", "Close", nullptr));
     } // retranslateUi
 
 };

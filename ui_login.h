@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'login.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -99,11 +99,11 @@ public:
 
     void retranslateUi(QDialog *login)
     {
-        login->setWindowTitle(QApplication::translate("login", "Dialog", 0));
-        label->setText(QApplication::translate("login", "Username", 0));
-        label_2->setText(QApplication::translate("login", "Password", 0));
-        pushButton->setText(QApplication::translate("login", "Login", 0));
-        pushButton_2->setText(QApplication::translate("login", "Exit", 0));
+        login->setWindowTitle(QApplication::translate("login", "Dialog", nullptr));
+        label->setText(QApplication::translate("login", "Username", nullptr));
+        label_2->setText(QApplication::translate("login", "Password", nullptr));
+        pushButton->setText(QApplication::translate("login", "Login", nullptr));
+        pushButton_2->setText(QApplication::translate("login", "Exit", nullptr));
     } // retranslateUi
 
 };

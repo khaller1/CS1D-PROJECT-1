@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addrestaurant.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -40,11 +40,7 @@ public:
     QLabel *label;
     QLineEdit *lineEdit_name;
     QFormLayout *formLayout_3;
-    QLabel *label_3;
-    QLineEdit *lineEdit_menu;
     QFormLayout *formLayout_4;
-    QLabel *label_4;
-    QLineEdit *lineEdit_distance;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
@@ -100,36 +96,11 @@ public:
 
         formLayout_3 = new QFormLayout();
         formLayout_3->setObjectName(QStringLiteral("formLayout_3"));
-        label_3 = new QLabel(addRestaurant);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
-        label_3->setSizePolicy(sizePolicy);
-
-        formLayout_3->setWidget(0, QFormLayout::LabelRole, label_3);
-
-        lineEdit_menu = new QLineEdit(addRestaurant);
-        lineEdit_menu->setObjectName(QStringLiteral("lineEdit_menu"));
-
-        formLayout_3->setWidget(0, QFormLayout::FieldRole, lineEdit_menu);
-
 
         verticalLayout->addLayout(formLayout_3);
 
         formLayout_4 = new QFormLayout();
         formLayout_4->setObjectName(QStringLiteral("formLayout_4"));
-        label_4 = new QLabel(addRestaurant);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        formLayout_4->setWidget(0, QFormLayout::LabelRole, label_4);
-
-        lineEdit_distance = new QLineEdit(addRestaurant);
-        lineEdit_distance->setObjectName(QStringLiteral("lineEdit_distance"));
-
-        formLayout_4->setWidget(0, QFormLayout::FieldRole, lineEdit_distance);
-
 
         verticalLayout->addLayout(formLayout_4);
 
@@ -177,15 +148,13 @@ public:
 
     void retranslateUi(QDialog *addRestaurant)
     {
-        addRestaurant->setWindowTitle(QApplication::translate("addRestaurant", "Dialog", 0));
-        label_2->setText(QApplication::translate("addRestaurant", "Restaurant ID", 0));
-        label->setText(QApplication::translate("addRestaurant", "Restaurant Name", 0));
-        label_3->setText(QApplication::translate("addRestaurant", "Menu Size", 0));
-        label_4->setText(QApplication::translate("addRestaurant", "Distance to Saddleback", 0));
-        pushButton->setText(QApplication::translate("addRestaurant", "Add", 0));
-        pushButton_edit->setText(QApplication::translate("addRestaurant", "Edit", 0));
-        pushButton_delete->setText(QApplication::translate("addRestaurant", "Delete", 0));
-        pushButton_exit->setText(QApplication::translate("addRestaurant", "Exit", 0));
+        addRestaurant->setWindowTitle(QApplication::translate("addRestaurant", "Dialog", nullptr));
+        label_2->setText(QApplication::translate("addRestaurant", "Restaurant ID", nullptr));
+        label->setText(QApplication::translate("addRestaurant", "Restaurant Name", nullptr));
+        pushButton->setText(QApplication::translate("addRestaurant", "Add", nullptr));
+        pushButton_edit->setText(QApplication::translate("addRestaurant", "Edit", nullptr));
+        pushButton_delete->setText(QApplication::translate("addRestaurant", "Delete", nullptr));
+        pushButton_exit->setText(QApplication::translate("addRestaurant", "Exit", nullptr));
     } // retranslateUi
 
 };

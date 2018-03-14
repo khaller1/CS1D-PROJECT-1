@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'viewrest.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -55,8 +55,8 @@ public:
 
     void retranslateUi(QDialog *viewRest)
     {
-        viewRest->setWindowTitle(QApplication::translate("viewRest", "Dialog", 0));
-        Exit_Button->setText(QApplication::translate("viewRest", "Exit", 0));
+        viewRest->setWindowTitle(QApplication::translate("viewRest", "Dialog", nullptr));
+        Exit_Button->setText(QApplication::translate("viewRest", "Exit", nullptr));
     } // retranslateUi
 
 };

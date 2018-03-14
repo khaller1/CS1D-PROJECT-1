@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'launcher.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -190,13 +190,13 @@ public:
 
     void retranslateUi(QMainWindow *Launcher)
     {
-        Launcher->setWindowTitle(QApplication::translate("Launcher", "Launcher", 0));
-        ViewRestaurant_Button->setText(QApplication::translate("Launcher", "View Restaurant's", 0));
-        ViewMenu_Button->setText(QApplication::translate("Launcher", "View Menu's", 0));
-        QuickTrip_Button->setText(QApplication::translate("Launcher", "Quick Trip", 0));
-        CustomTrip_Button->setText(QApplication::translate("Launcher", "Custom Trip", 0));
-        AdminLogin_Button->setText(QApplication::translate("Launcher", "Admin Login", 0));
-        Exit_Button->setText(QApplication::translate("Launcher", "Exit", 0));
+        Launcher->setWindowTitle(QApplication::translate("Launcher", "Launcher", nullptr));
+        ViewRestaurant_Button->setText(QApplication::translate("Launcher", "View Restaurant's", nullptr));
+        ViewMenu_Button->setText(QApplication::translate("Launcher", "View Menu's", nullptr));
+        QuickTrip_Button->setText(QApplication::translate("Launcher", "Quick Trip", nullptr));
+        CustomTrip_Button->setText(QApplication::translate("Launcher", "Custom Trip", nullptr));
+        AdminLogin_Button->setText(QApplication::translate("Launcher", "Admin Login", nullptr));
+        Exit_Button->setText(QApplication::translate("Launcher", "Exit", nullptr));
     } // retranslateUi
 
 };

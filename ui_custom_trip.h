@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'custom_trip.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -119,13 +119,13 @@ public:
 
     void retranslateUi(QDialog *Custom_Trip)
     {
-        Custom_Trip->setWindowTitle(QApplication::translate("Custom_Trip", "Dialog", 0));
-        groupBox->setTitle(QApplication::translate("Custom_Trip", "Custom Start", 0));
-        cStart_Button->setText(QApplication::translate("Custom_Trip", "Start Here!", 0));
-        groupBox_2->setTitle(QApplication::translate("Custom_Trip", "Custom Trip", 0));
-        Add_cTrip_Button->setText(QApplication::translate("Custom_Trip", "Add To Trip", 0));
-        cTrip_Start_Button->setText(QApplication::translate("Custom_Trip", "Start Trip!", 0));
-        Back_Button->setText(QApplication::translate("Custom_Trip", "Go Back", 0));
+        Custom_Trip->setWindowTitle(QApplication::translate("Custom_Trip", "Dialog", nullptr));
+        groupBox->setTitle(QApplication::translate("Custom_Trip", "Custom Start", nullptr));
+        cStart_Button->setText(QApplication::translate("Custom_Trip", "Start Here!", nullptr));
+        groupBox_2->setTitle(QApplication::translate("Custom_Trip", "Custom Trip", nullptr));
+        Add_cTrip_Button->setText(QApplication::translate("Custom_Trip", "Add To Trip", nullptr));
+        cTrip_Start_Button->setText(QApplication::translate("Custom_Trip", "Start Trip!", nullptr));
+        Back_Button->setText(QApplication::translate("Custom_Trip", "Go Back", nullptr));
     } // retranslateUi
 
 };

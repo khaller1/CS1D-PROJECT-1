@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'addmenu.ui'
 **
-** Created by: Qt User Interface Compiler version 5.7.0
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -179,15 +179,15 @@ public:
 
     void retranslateUi(QDialog *addMenu)
     {
-        addMenu->setWindowTitle(QApplication::translate("addMenu", "Dialog", 0));
-        ViewMenu->setText(QApplication::translate("addMenu", "View Menu", 0));
-        label_3->setText(QApplication::translate("addMenu", "Item Name", 0));
-        label->setText(QApplication::translate("addMenu", "Restaurant ID", 0));
-        label_4->setText(QApplication::translate("addMenu", "Item Cost", 0));
-        pushButton_add->setText(QApplication::translate("addMenu", "Add", 0));
-        pushButton_edit->setText(QApplication::translate("addMenu", "Edit", 0));
-        pushButton_delete->setText(QApplication::translate("addMenu", "Delete", 0));
-        pushButton_exit->setText(QApplication::translate("addMenu", "Exit", 0));
+        addMenu->setWindowTitle(QApplication::translate("addMenu", "Dialog", nullptr));
+        ViewMenu->setText(QApplication::translate("addMenu", "View Menu", nullptr));
+        label_3->setText(QApplication::translate("addMenu", "Item Name", nullptr));
+        label->setText(QApplication::translate("addMenu", "Restaurant ID", nullptr));
+        label_4->setText(QApplication::translate("addMenu", "Item Cost", nullptr));
+        pushButton_add->setText(QApplication::translate("addMenu", "Add", nullptr));
+        pushButton_edit->setText(QApplication::translate("addMenu", "Edit", nullptr));
+        pushButton_delete->setText(QApplication::translate("addMenu", "Delete", nullptr));
+        pushButton_exit->setText(QApplication::translate("addMenu", "Exit", nullptr));
     } // retranslateUi
 
 };
