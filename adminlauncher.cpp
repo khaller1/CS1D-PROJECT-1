@@ -4,11 +4,13 @@
 #include <addmenu.h>
 #include <adddistance.h>
 #include <QMessageBox>
+#include <tripview.h>
 adminLauncher::adminLauncher(DataManager* inDM, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::adminLauncher)
 {
     DM = inDM;
+    prev = parent;
     ui->setupUi(this);
 }
 
@@ -37,7 +39,8 @@ void adminLauncher::on_ViewMenu_Button_clicked()
 
 void adminLauncher::on_Exit_Button_clicked()
 {
-    QCoreApplication::exit();
+    this->accept();
+    prev->show();
 }
 
 void adminLauncher::on_pushButton_clicked()
@@ -69,8 +72,29 @@ void adminLauncher::on_pushButton_3_clicked()
 void adminLauncher::on_pushButton_import_clicked()
 {
     bool success = DM->import();
-    if(success)
+    if(success){
         QMessageBox::information(this, "Import Text File", "Successfully imported restaurants!");
-    else
+        DM->sortDist();
+    } else {
         QMessageBox::warning(this, "Import Text File", "Error: Could not import from text file.");
+    }
+}
+
+void adminLauncher::on_QuickTrip_Button_clicked()
+{
+    TripView *QTrip;
+    DM->makeQuickTrip();
+    QTrip = new TripView(DM, this);
+    this->hide();
+    QTrip->show();
+    this->show();
+}
+
+void adminLauncher::on_CustomTrip_Button_clicked()
+{
+    Custom_Trip *cTrip;
+    cTrip = new Custom_Trip(DM, this);
+    this->hide();
+    cTrip->show();
+    this->show();
 }

@@ -61,6 +61,7 @@ public:
     void setDistDstId(int id, int dst);
     void setDistDstId(int src, int dst, int newDst);
 
+
     QString getRestName(int id);
     double getRestDist(int id);
     int getMenuSize(int id);

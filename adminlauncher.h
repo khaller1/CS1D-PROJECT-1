@@ -31,9 +31,14 @@ private slots:
 
     void on_pushButton_import_clicked();
 
+    void on_QuickTrip_Button_clicked();
+
+    void on_CustomTrip_Button_clicked();
+
 private:
     Ui::adminLauncher *ui;
     DataManager* DM;
+    QWidget* prev;
 };
 
 #endif // ADMINLAUNCHER_H

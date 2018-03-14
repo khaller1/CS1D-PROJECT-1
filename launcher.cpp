@@ -42,7 +42,7 @@ void Launcher::on_AdminLogin_Button_clicked()
 {
     login* admin = new login(DM, this);
     this->hide();
-    admin->exec();
+    admin->show();
     this->show();
 }
 void Launcher::on_QuickTrip_Button_clicked()

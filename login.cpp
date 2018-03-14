@@ -29,9 +29,9 @@ void login::on_pushButton_clicked()
     {
         QMessageBox::information(this, "Login", "Login successful!");
         close();
-        prev->close();
-        adminLauncher* admin = new adminLauncher(DM, this);
-        admin->exec();
+        prev->hide();
+        adminLauncher* admin = new adminLauncher(DM, prev);
+        admin->show();
 
     }
     else

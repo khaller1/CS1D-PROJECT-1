@@ -80,9 +80,11 @@ void Custom_Trip::on_cStart_Button_clicked()
 
 void Custom_Trip::on_cTrip_Start_Button_clicked()
 {
-    TripView *Custom;
-    DM->makeCustomTrip(cust_trip);
-    Custom = new TripView(DM, prev);
-    this->close();
-    Custom->show();
+    if(cust_trip.size() > 0){
+        TripView *Custom;
+        DM->makeCustomTrip(cust_trip);
+        Custom = new TripView(DM, prev);
+        this->close();
+        Custom->show();
+    }
 }

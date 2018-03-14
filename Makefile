@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = FastFoodFantasy1.0.0
-DISTDIR = /Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2/.tmp/FastFoodFantasy1.0.0
+DISTDIR = /Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5/.tmp/FastFoodFantasy1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_LFLAGS) -Wl,-rpath,/Users/seanmitchell/Qt/5.8/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Users/seanmitchell/Qt/5.8/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtSql -framework OpenGL -framework AGL 
@@ -65,7 +65,8 @@ SOURCES       = main.cpp \
 		carttable.cpp \
 		triptable.cpp \
 		custom_trip.cpp \
-		customtrip_table.cpp moc_launcher.cpp \
+		invoice.cpp \
+		mainwindow.cpp moc_launcher.cpp \
 		moc_restauranttable.cpp \
 		moc_restView.cpp \
 		moc_menutable.cpp \
@@ -79,7 +80,8 @@ SOURCES       = main.cpp \
 		moc_carttable.cpp \
 		moc_triptable.cpp \
 		moc_custom_trip.cpp \
-		moc_customtrip_table.cpp
+		moc_invoice.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = main.o \
 		launcher.o \
 		dbmanager.o \
@@ -97,7 +99,8 @@ OBJECTS       = main.o \
 		carttable.o \
 		triptable.o \
 		custom_trip.o \
-		customtrip_table.o \
+		invoice.o \
+		mainwindow.o \
 		moc_launcher.o \
 		moc_restauranttable.o \
 		moc_restView.o \
@@ -112,7 +115,8 @@ OBJECTS       = main.o \
 		moc_carttable.o \
 		moc_triptable.o \
 		moc_custom_trip.o \
-		moc_customtrip_table.o
+		moc_invoice.o \
+		moc_mainwindow.o
 DIST          = ../../Qt/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.8/clang_64/mkspecs/qdevice.pri \
 		../../Qt/5.8/clang_64/mkspecs/features/device_config.prf \
@@ -307,7 +311,8 @@ DIST          = ../../Qt/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		carttable.h \
 		triptable.h \
 		custom_trip.h \
-		customtrip_table.h main.cpp \
+		invoice.h \
+		mainwindow.h main.cpp \
 		launcher.cpp \
 		dbmanager.cpp \
 		datamanager.cpp \
@@ -324,7 +329,8 @@ DIST          = ../../Qt/5.8/clang_64/mkspecs/features/spec_pre.prf \
 		carttable.cpp \
 		triptable.cpp \
 		custom_trip.cpp \
-		customtrip_table.cpp
+		invoice.cpp \
+		mainwindow.cpp
 QMAKE_TARGET  = FastFoodFantasy
 DESTDIR       = 
 TARGET        = FastFoodFantasy.app/Contents/MacOS/FastFoodFantasy
@@ -333,7 +339,7 @@ TARGET        = FastFoodFantasy.app/Contents/MacOS/FastFoodFantasy
 first: all
 ####### Build rules
 
-$(TARGET): ui_launcher.h ui_viewrest.h ui_menuview.h ui_tripview.h ui_login.h ui_adminlauncher.h ui_addrestaurant.h ui_addmenu.h ui_adddistance.h ui_custom_trip.h $(OBJECTS)  
+$(TARGET): ui_launcher.h ui_viewrest.h ui_menuview.h ui_tripview.h ui_login.h ui_adminlauncher.h ui_addrestaurant.h ui_addmenu.h ui_adddistance.h ui_custom_trip.h ui_invoice.h ui_mainwindow.h $(OBJECTS)  
 	@test -d FastFoodFantasy.app/Contents/MacOS/ || mkdir -p FastFoodFantasy.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -730,9 +736,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents launcher.h dbmanager.h datamanager.h main.h restauranttable.h structs.h restView.h menutable.h menuview.h tripview.h login.h adminlauncher.h addrestaurant.h addmenu.h adddistance.h carttable.h triptable.h custom_trip.h customtrip_table.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp launcher.cpp dbmanager.cpp datamanager.cpp restauranttable.cpp viewrest.cpp menuview.cpp menutable.cpp tripview.cpp login.cpp adminlauncher.cpp addrestaurant.cpp addmenu.cpp adddistance.cpp carttable.cpp triptable.cpp custom_trip.cpp customtrip_table.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents launcher.ui viewrest.ui menuview.ui tripview.ui login.ui adminlauncher.ui addrestaurant.ui addmenu.ui adddistance.ui custom_trip.ui $(DISTDIR)/
+	$(COPY_FILE) --parents launcher.h dbmanager.h datamanager.h main.h restauranttable.h structs.h restView.h menutable.h menuview.h tripview.h login.h adminlauncher.h addrestaurant.h addmenu.h adddistance.h carttable.h triptable.h custom_trip.h invoice.h mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp launcher.cpp dbmanager.cpp datamanager.cpp restauranttable.cpp viewrest.cpp menuview.cpp menutable.cpp tripview.cpp login.cpp adminlauncher.cpp addrestaurant.cpp addmenu.cpp adddistance.cpp carttable.cpp triptable.cpp custom_trip.cpp invoice.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents launcher.ui viewrest.ui menuview.ui tripview.ui login.ui adminlauncher.ui addrestaurant.ui addmenu.ui adddistance.ui custom_trip.ui invoice.ui mainwindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -764,9 +770,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.9 $(EXPORT_QMAKE_XARCH_CFLAGS) -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h ../../Qt/5.8/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_launcher.cpp moc_restauranttable.cpp moc_restView.cpp moc_menutable.cpp moc_menuview.cpp moc_tripview.cpp moc_login.cpp moc_adminlauncher.cpp moc_addrestaurant.cpp moc_addmenu.cpp moc_adddistance.cpp moc_carttable.cpp moc_triptable.cpp moc_custom_trip.cpp moc_customtrip_table.cpp
+compiler_moc_header_make_all: moc_launcher.cpp moc_restauranttable.cpp moc_restView.cpp moc_menutable.cpp moc_menuview.cpp moc_tripview.cpp moc_login.cpp moc_adminlauncher.cpp moc_addrestaurant.cpp moc_addmenu.cpp moc_adddistance.cpp moc_carttable.cpp moc_triptable.cpp moc_custom_trip.cpp moc_invoice.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_launcher.cpp moc_restauranttable.cpp moc_restView.cpp moc_menutable.cpp moc_menuview.cpp moc_tripview.cpp moc_login.cpp moc_adminlauncher.cpp moc_addrestaurant.cpp moc_addmenu.cpp moc_adddistance.cpp moc_carttable.cpp moc_triptable.cpp moc_custom_trip.cpp moc_customtrip_table.cpp
+	-$(DEL_FILE) moc_launcher.cpp moc_restauranttable.cpp moc_restView.cpp moc_menutable.cpp moc_menuview.cpp moc_tripview.cpp moc_login.cpp moc_adminlauncher.cpp moc_addrestaurant.cpp moc_addmenu.cpp moc_adddistance.cpp moc_carttable.cpp moc_triptable.cpp moc_custom_trip.cpp moc_invoice.cpp moc_mainwindow.cpp
 moc_launcher.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		main.h \
@@ -796,11 +802,9 @@ moc_launcher.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWin
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		launcher.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -810,12 +814,11 @@ moc_launcher.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWin
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		launcher.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib launcher.h -o moc_launcher.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib launcher.h -o moc_launcher.cpp
 
 moc_restauranttable.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
@@ -827,7 +830,7 @@ moc_restauranttable.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbs
 		restauranttable.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib restauranttable.h -o moc_restauranttable.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib restauranttable.h -o moc_restauranttable.cpp
 
 moc_restView.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -860,11 +863,9 @@ moc_restView.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog 
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -872,12 +873,11 @@ moc_restView.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog 
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		restView.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib restView.h -o moc_restView.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib restView.h -o moc_restView.cpp
 
 moc_menutable.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
@@ -889,7 +889,7 @@ moc_menutable.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractT
 		menutable.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib menutable.h -o moc_menutable.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib menutable.h -o moc_menutable.cpp
 
 moc_menuview.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -924,7 +924,7 @@ moc_menuview.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog 
 		menuview.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib menuview.h -o moc_menuview.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib menuview.h -o moc_menuview.cpp
 
 moc_tripview.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -957,11 +957,9 @@ moc_tripview.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWin
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		launcher.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -969,13 +967,12 @@ moc_tripview.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWin
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		triptable.h \
 		tripview.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib tripview.h -o moc_tripview.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib tripview.h -o moc_tripview.cpp
 
 moc_login.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -1007,7 +1004,7 @@ moc_login.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		login.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib login.h -o moc_login.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib login.h -o moc_login.cpp
 
 moc_adminlauncher.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -1040,11 +1037,9 @@ moc_adminlauncher.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDi
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1052,12 +1047,11 @@ moc_adminlauncher.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDi
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		adminlauncher.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib adminlauncher.h -o moc_adminlauncher.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib adminlauncher.h -o moc_adminlauncher.cpp
 
 moc_addrestaurant.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -1090,11 +1084,9 @@ moc_addrestaurant.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDi
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1102,12 +1094,11 @@ moc_addrestaurant.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDi
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		addrestaurant.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib addrestaurant.h -o moc_addrestaurant.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib addrestaurant.h -o moc_addrestaurant.cpp
 
 moc_addmenu.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -1140,11 +1131,9 @@ moc_addmenu.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1152,12 +1141,11 @@ moc_addmenu.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		addmenu.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib addmenu.h -o moc_addmenu.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib addmenu.h -o moc_addmenu.cpp
 
 moc_adddistance.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -1190,11 +1178,9 @@ moc_adddistance.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDial
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1202,12 +1188,11 @@ moc_adddistance.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDial
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		adddistance.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib adddistance.h -o moc_adddistance.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib adddistance.h -o moc_adddistance.cpp
 
 moc_carttable.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
@@ -1219,7 +1204,7 @@ moc_carttable.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractT
 		carttable.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib carttable.h -o moc_carttable.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib carttable.h -o moc_carttable.cpp
 
 moc_triptable.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
@@ -1231,7 +1216,7 @@ moc_triptable.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractT
 		triptable.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib triptable.h -o moc_triptable.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib triptable.h -o moc_triptable.cpp
 
 moc_custom_trip.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
@@ -1264,11 +1249,9 @@ moc_custom_trip.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMain
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		launcher.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1276,30 +1259,71 @@ moc_custom_trip.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMain
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		custom_trip.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib custom_trip.h -o moc_custom_trip.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib custom_trip.h -o moc_custom_trip.cpp
 
-moc_customtrip_table.cpp: ../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
-		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+moc_invoice.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		structs.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVector \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvector.h \
-		customtrip_table.h \
+		main.h \
+		datamanager.h \
+		dbmanager.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/QtSql \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		launcher.h \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		restauranttable.h \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		restView.h \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		menuview.h \
+		menutable.h \
+		login.h \
+		custom_trip.h \
+		carttable.h \
+		invoice.h \
 		moc_predefs.h \
 		../../Qt/5.8/clang_64/bin/moc
-	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-sean-2 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib customtrip_table.h -o moc_customtrip_table.cpp
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib invoice.h -o moc_invoice.cpp
+
+moc_mainwindow.cpp: ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		mainwindow.h \
+		moc_predefs.h \
+		../../Qt/5.8/clang_64/bin/moc
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/seanmitchell/Qt/5.8/clang_64/mkspecs/macx-clang -I/Users/seanmitchell/Downloads/CS1D-PROJECT-1-FinalProduct-5 -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtWidgets.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtGui.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtSql.framework/Headers -I/Users/seanmitchell/Qt/5.8/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/seanmitchell/Qt/5.8/clang_64/lib mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_launcher.h ui_viewrest.h ui_menuview.h ui_tripview.h ui_login.h ui_adminlauncher.h ui_addrestaurant.h ui_addmenu.h ui_adddistance.h ui_custom_trip.h
+compiler_uic_make_all: ui_launcher.h ui_viewrest.h ui_menuview.h ui_tripview.h ui_login.h ui_adminlauncher.h ui_addrestaurant.h ui_addmenu.h ui_adddistance.h ui_custom_trip.h ui_invoice.h ui_mainwindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_launcher.h ui_viewrest.h ui_menuview.h ui_tripview.h ui_login.h ui_adminlauncher.h ui_addrestaurant.h ui_addmenu.h ui_adddistance.h ui_custom_trip.h
+	-$(DEL_FILE) ui_launcher.h ui_viewrest.h ui_menuview.h ui_tripview.h ui_login.h ui_adminlauncher.h ui_addrestaurant.h ui_addmenu.h ui_adddistance.h ui_custom_trip.h ui_invoice.h ui_mainwindow.h
 ui_launcher.h: launcher.ui \
 		../../Qt/5.8/clang_64/bin/uic
 	/Users/seanmitchell/Qt/5.8/clang_64/bin/uic launcher.ui -o ui_launcher.h
@@ -1339,6 +1363,14 @@ ui_adddistance.h: adddistance.ui \
 ui_custom_trip.h: custom_trip.ui \
 		../../Qt/5.8/clang_64/bin/uic
 	/Users/seanmitchell/Qt/5.8/clang_64/bin/uic custom_trip.ui -o ui_custom_trip.h
+
+ui_invoice.h: invoice.ui \
+		../../Qt/5.8/clang_64/bin/uic
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/uic invoice.ui -o ui_invoice.h
+
+ui_mainwindow.h: mainwindow.ui \
+		../../Qt/5.8/clang_64/bin/uic
+	/Users/seanmitchell/Qt/5.8/clang_64/bin/uic mainwindow.ui -o ui_mainwindow.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -1383,11 +1415,9 @@ main.o: main.cpp ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QApplicat
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -1397,7 +1427,6 @@ main.o: main.cpp ../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QApplicat
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
@@ -1430,11 +1459,9 @@ launcher.o: launcher.cpp launcher.h \
 		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
@@ -1444,7 +1471,6 @@ launcher.o: launcher.cpp launcher.h \
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		ui_launcher.h \
 		tripview.h \
@@ -1546,18 +1572,15 @@ viewrest.o: viewrest.cpp restView.h \
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		menuview.h \
 		menutable.h \
 		login.h \
 		custom_trip.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
-		customtrip_table.h \
 		carttable.h \
 		ui_viewrest.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o viewrest.o viewrest.cpp
@@ -1638,11 +1661,9 @@ tripview.o: tripview.cpp tripview.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		launcher.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1650,10 +1671,10 @@ tripview.o: tripview.cpp tripview.h \
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		triptable.h \
-		ui_tripview.h
+		ui_tripview.h \
+		invoice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tripview.o tripview.cpp
 
 login.o: login.cpp login.h \
@@ -1692,18 +1713,15 @@ login.o: login.cpp login.h \
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
 		menuview.h \
 		menutable.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o login.o login.cpp
 
@@ -1739,11 +1757,9 @@ adminlauncher.o: adminlauncher.cpp adminlauncher.h \
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1751,14 +1767,15 @@ adminlauncher.o: adminlauncher.cpp adminlauncher.h \
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		ui_adminlauncher.h \
 		addrestaurant.h \
 		addmenu.h \
 		adddistance.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
-		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		tripview.h \
+		triptable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o adminlauncher.o adminlauncher.cpp
 
 addrestaurant.o: addrestaurant.cpp addrestaurant.h \
@@ -1793,11 +1810,9 @@ addrestaurant.o: addrestaurant.cpp addrestaurant.h \
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1805,7 +1820,6 @@ addrestaurant.o: addrestaurant.cpp addrestaurant.h \
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		ui_addrestaurant.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
@@ -1844,11 +1858,9 @@ addmenu.o: addmenu.cpp addmenu.h \
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1856,7 +1868,6 @@ addmenu.o: addmenu.cpp addmenu.h \
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		ui_addmenu.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
@@ -1895,11 +1906,9 @@ adddistance.o: adddistance.cpp adddistance.h \
 		launcher.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
@@ -1907,7 +1916,6 @@ adddistance.o: adddistance.cpp adddistance.h \
 		menutable.h \
 		login.h \
 		custom_trip.h \
-		customtrip_table.h \
 		carttable.h \
 		ui_adddistance.h \
 		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
@@ -1966,33 +1974,72 @@ custom_trip.o: custom_trip.cpp custom_trip.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		launcher.h \
-		mainwindow.h \
 		restauranttable.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-		restauranttable2.h \
 		restView.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
 		menuview.h \
 		menutable.h \
 		login.h \
-		customtrip_table.h \
 		carttable.h \
 		ui_custom_trip.h \
 		tripview.h \
 		triptable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o custom_trip.o custom_trip.cpp
 
-customtrip_table.o: customtrip_table.cpp customtrip_table.h \
-		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
-		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+invoice.o: invoice.cpp invoice.h \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QDialog \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
 		structs.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QVector \
-		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvector.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o customtrip_table.o customtrip_table.cpp
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qvector.h \
+		main.h \
+		datamanager.h \
+		dbmanager.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/QtSql \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qtsqlglobal.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqldatabase.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqldriver.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqldriverplugin.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlerror.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlfield.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlindex.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquery.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlquerymodel.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlrecord.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlrelationaldelegate.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlrelationaltablemodel.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqlresult.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qsqltablemodel.h \
+		../../Qt/5.8/clang_64/lib/QtSql.framework/Headers/qtsqlversion.h \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QDebug \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		launcher.h \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		restauranttable.h \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QAbstractTableModel \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+		restView.h \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/QSortFilterProxyModel \
+		../../Qt/5.8/clang_64/lib/QtCore.framework/Headers/qsortfilterproxymodel.h \
+		menuview.h \
+		menutable.h \
+		login.h \
+		custom_trip.h \
+		carttable.h \
+		ui_invoice.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o invoice.o invoice.cpp
+
+mainwindow.o: mainwindow.cpp mainwindow.h \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		../../Qt/5.8/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		ui_mainwindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 moc_launcher.o: moc_launcher.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_launcher.o moc_launcher.cpp
@@ -2036,8 +2083,11 @@ moc_triptable.o: moc_triptable.cpp
 moc_custom_trip.o: moc_custom_trip.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_custom_trip.o moc_custom_trip.cpp
 
-moc_customtrip_table.o: moc_customtrip_table.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_customtrip_table.o moc_customtrip_table.cpp
+moc_invoice.o: moc_invoice.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_invoice.o moc_invoice.cpp
+
+moc_mainwindow.o: moc_mainwindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
 
 ####### Install
 
