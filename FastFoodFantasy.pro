@@ -41,8 +41,8 @@ SOURCES += \
     carttable.cpp \
     triptable.cpp \
     custom_trip.cpp \
-    customtrip_table.cpp \
-    invoice.cpp
+    invoice.cpp \
+    mainwindow.cpp
 
 HEADERS += \
         launcher.h \
@@ -63,8 +63,8 @@ HEADERS += \
     carttable.h \
     triptable.h \
     custom_trip.h \
-    customtrip_table.h \
-    invoice.h
+    invoice.h \
+    mainwindow.h
 
 FORMS += \
         launcher.ui \
@@ -77,4 +77,5 @@ FORMS += \
     addmenu.ui \
     adddistance.ui \
     custom_trip.ui \
-    invoice.ui
+    invoice.ui \
+    mainwindow.ui

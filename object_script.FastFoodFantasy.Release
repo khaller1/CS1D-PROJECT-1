@@ -16,8 +16,8 @@ INPUT(
 ./release\carttable.o
 ./release\triptable.o
 ./release\custom_trip.o
-./release\customtrip_table.o
 ./release\invoice.o
+./release\mainwindow.o
 ./release\moc_launcher.o
 ./release\moc_restauranttable.o
 ./release\moc_restView.o
@@ -32,6 +32,6 @@ INPUT(
 ./release\moc_carttable.o
 ./release\moc_triptable.o
 ./release\moc_custom_trip.o
-./release\moc_customtrip_table.o
 ./release\moc_invoice.o
+./release\moc_mainwindow.o
 );

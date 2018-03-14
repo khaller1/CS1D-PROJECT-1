@@ -5,7 +5,6 @@
 #include <QDialog>
 #include <main.h>
 #include <QSortFilterProxyModel>
-#include <customtrip_table.h>
 #include <carttable.h>
 /** \class Custom_Trip
  * Class displays the options for a custom trip selection
@@ -36,7 +35,6 @@ private slots:
 private:
     Ui::Custom_Trip *ui; /// UI element
     DataManager* DM; /// Data accessor
-    CustomTrip_Table* c_Table; /// Custom trip table
     RestaurantTable* r_table; /// Restaurant Table
     QWidget *prev; /// Previous menu
     QSortFilterProxyModel *Proxy; /// Table sorter

@@ -16,8 +16,8 @@ INPUT(
 ./debug\carttable.o
 ./debug\triptable.o
 ./debug\custom_trip.o
-./debug\customtrip_table.o
 ./debug\invoice.o
+./debug\mainwindow.o
 ./debug\moc_launcher.o
 ./debug\moc_restauranttable.o
 ./debug\moc_restView.o
@@ -32,6 +32,6 @@ INPUT(
 ./debug\moc_carttable.o
 ./debug\moc_triptable.o
 ./debug\moc_custom_trip.o
-./debug\moc_customtrip_table.o
 ./debug\moc_invoice.o
+./debug\moc_mainwindow.o
 );
