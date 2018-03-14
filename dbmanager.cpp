@@ -1,12 +1,5 @@
-#include "dbmanager.h"
-#include <QSqlQuery>
-#include <QSqlError>
-#include <QSqlRecord>
-#include <QDebug>
-DbManager::DbManager()
-{
+#include <dbmanager.h>
 
-}
 DbManager::~DbManager()
 {
     if(m_db.isOpen())
@@ -14,25 +7,16 @@ DbManager::~DbManager()
         m_db.close();
     }
 }
+
 bool DbManager::isOpen() const
 {
     return m_db.isOpen();
 }
-bool DbManager::createTable()
+QSqlDatabase DbManager::getDb()
 {
-    bool success = false;
-
-    QSqlQuery query;
-    query.prepare("CREATE TABLE restaurant(restId INTEGER NOT NULL UNIQUE, restName TEXT NOT NULL UNIQUE, distanceToSaddleback NUMERIC NOT NULL, menuSize INTEGER NOT NULL);");
-
-    if (!query.exec())
-    {
-        qDebug() << "Couldn't create the table 'restaurant': one might already exist.";
-        success = false;
-    }
-
-    return success;
+    return m_db;
 }
+
 DbManager::DbManager(const QString& path)
 {
     m_db=QSqlDatabase::addDatabase("QSQLITE");
@@ -46,41 +30,121 @@ DbManager::DbManager(const QString& path)
         qDebug() << "Database: connection is A-okay";
     }
 }
-bool DbManager::addRestaurant(int id, const QString &namein, double dist, int size)
+
+bool DbManager::addRestaurant(QString id, const QString &namein, QString dist, QString size)
 {
     bool success=false;
     QSqlQuery query;
-    query.prepare("INSERT INTO restaurant (restId, restName, distancetoSaddleback, menuSize)"
-                  "VALUES (:restId, :restName, :distancetoSaddleback, :menuSize)");
-    query.bindValue(":restId", id);
-    query.bindValue(":restName", namein);
-    query.bindValue(":distancetoSaddleback", dist);
-    query.bindValue(":menuSize", size);
+    query.prepare("insert into restaurant (restId, restName, sbDist, menuSize) values ('"+id+"','"+namein+"','"+dist+"','"+size+"')");
     if(query.exec())
         success=true;
     else qDebug() << "add restaurant failed - " << query.lastError();
     return success;
 }
-bool DbManager::addMenuItem(int id, const QString &namein, double cost)
+
+bool DbManager::addRestaurant(const QString &namein, QString dist, QString size)
+{
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into restaurant (restName, sbDist, menuSize) values ('"+namein+"','"+dist+"','"+size+"')");
+    if(query.exec())
+        success=true;
+    else qDebug() << "add restaurant failed - " << query.lastError();
+    return success;
+}
+
+bool DbManager::addMenuItem(QString id, QString parent, const QString &namein, QString cost)
+{
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into menu (baseId, parentId, itemName, itemCost) values ('"+id+"','"+parent+"','"+namein+"','"+cost+"')");
+    if(query.exec())
+        success=true;
+    else qDebug() << "add menu failed - " << query.lastError();
+    return success;
+}
+bool DbManager::addMenuItem(QString parent, const QString &namein, QString cost)
+{
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into menu (parentId, itemName, itemCost) values ('"+parent+"','"+namein+"','"+cost+"')");
+    if(query.exec())
+        success=true;
+    else qDebug() << "add menu failed - " << query.lastError();
+    return success;
+}
+bool DbManager::addDistance(QString source, QString miles, QString destination)
+{
+    bool success=false;;
+    QSqlQuery query;
+    query.prepare("insert into distance (sourceId, miles, destinationId) values ('"+source+"','"+miles+"','"+destination+"')");
+    if(query.exec())
+        success=true;
+    else qDebug() << "add menu failed - " << query.lastError();
+    return success;
+}
+
+bool DbManager::editRest(QString id, const QString &namein, QString dist, QString size)
 {
     bool success=false;
     QSqlQuery query;
-    query.prepare("INSERT INTO menu (parentId, itemName, itemCost)"
-                  "VALUES (:id, :namein, :cost)");
-    query.bindValue(":id",id);
-    query.bindValue(":namein",namein);
-    query.bindValue(":cost",cost);
+    query.prepare("update restaurant set restName = '"+namein+"', sbDist ='"+dist+"', menuSize = '"+size+"' where restId= '"+id+"'");
     if(query.exec())
         success=true;
-    else qDebug() << "failed adding menu item - " << query.lastError();
+    else
+        qDebug() << "failed updating restaurant - " << query.lastError();
     return success;
 }
+bool DbManager::editMenu(QString parent, const QString &namein, QString cost)
+{
+    bool success=false;
+    QSqlQuery query;
+    query.prepare("update menu set itemCost ='"+cost+"' where parentId = '"+parent+"' and itemName = '"+namein+"'");
+    if(query.exec())
+        success=true;
+    else
+        qDebug() << "failed updating menu - " << query.lastError();
+    return success;
+}
+
+bool DbManager::deleteRestaurant(QString id)
+{
+    bool success=false;
+    QSqlQuery query;
+    QSqlQuery query2;
+    QSqlQuery query3;
+    QSqlQuery query4;
+    query.prepare("delete from restaurant where restId = '"+id+"'");
+    query2.prepare("delete from menu where parentId = '"+id+"'");
+    query3.prepare("delete from distance where sourceId = '"+id+"'");
+    query4.prepare("delete from distance where destinationId = '"+id+"'");
+
+    query2.exec();
+    query3.exec();
+    query4.exec();
+    if(query.exec())
+        success=true;
+    else
+        qDebug() << "failed deleting restaurant - " << query.lastError();
+    return success;
+}
+bool DbManager::deleteMenuItem(QString name, QString parent)
+{
+    bool success=false;
+    QSqlQuery query;
+    query.prepare("delete from menu where itemName = '"+name+"' and parentId = '"+parent+"'");
+    if(query.exec())
+        success=true;
+    else
+        qDebug() << "failed deleting menu item - " << query.lastError();
+    return success;
+}
+
 bool DbManager::addDistance(int source, double miles, int destination )
 {
     bool success=false;
-    QSqlQuery query;
-    query.prepare("INSERT INTO distance (sourceId, miles, destinationId)"
-                  "VALUES (:source, :miles, :destination)");
+    QSqlQuery query("INSERT INTO distance (sourceId, miles, destinationId)"
+                    "VALUES (:source, :miles, :destination)");
     query.bindValue(":source",source);
     query.bindValue(":miles",miles);
     query.bindValue(":destination",destination);
@@ -89,6 +153,7 @@ bool DbManager::addDistance(int source, double miles, int destination )
     else qDebug() << "failed adding distance - " << query.lastError();
     return success;
 }
+
 bool DbManager::removeRestaurant(int id)
 {
     bool success=false;
@@ -537,4 +602,65 @@ int DbManager::getMenuSize(int id)
     int index=query.record().indexOf("menuSize");
     size = query.value(index).toInt();
     return size;
+}
+bool DbManager::loadRestaurants(QVector<Restaurant>& vRestaurants){
+    Restaurant temp;
+    QSqlQuery query("SELECT * FROM restaurant");
+    query.exec();
+
+      while(query.next())
+      {
+          temp.idNum = query.value(0).toInt();
+          temp.name = query.value(1).toString();
+          temp.SBdist = query.value(2).toDouble();
+          temp.menuSize = query.value(3).toInt();
+
+          vRestaurants.push_back(temp);
+      }
+      return vRestaurants.size() > 0;
+}
+bool DbManager::loadMenus(QVector<Menu>& vMenus){
+    Menu temp;
+    QSqlQuery query("SELECT * FROM menu");
+    query.exec();
+
+      while(query.next())
+      {
+          temp.baseid = query.value(0).toInt();
+          temp.parentID = query.value(1).toInt();
+          temp.name = query.value(2).toString();
+          temp.cost = query.value(3).toDouble();
+          vMenus.push_back(temp);
+      }
+      return vMenus.size() > 0;
+}
+
+bool DbManager::loadDistances(QVector<AllDist>& vDistances){
+    AllDist temp;
+    QSqlQuery query("SELECT * FROM distance");
+    query.exec();
+
+      while(query.next())
+      {
+          temp.sourceID = query.value(1).toInt();
+          temp.dist = query.value(2).toDouble();
+          temp.destID = query.value(3).toInt();
+
+          vDistances.push_back(temp);
+      }
+      return vDistances.size() > 0;
+}
+bool DbManager::loadAdmins(QVector<AdminData>& vAdmins){
+    AdminData temp;
+    QSqlQuery query("SELECT * FROM admin");
+    query.exec();
+
+      while(query.next())
+      {
+          temp.userName = query.value(0).toString();
+          temp.passWord = query.value(1).toString();
+
+          vAdmins.push_back(temp);
+      }
+      return vAdmins.size() > 0;
 }
