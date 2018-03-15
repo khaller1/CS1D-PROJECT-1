@@ -18,6 +18,7 @@ void DataManager::sortMenus(){
             if(it->idNum == j->parentID){
                 temp.name = j->name;
                 temp.cost = j->cost;
+                temp.parentID = j->parentID;
                 it->RMenu.push_back(temp);
             }
         }
@@ -161,14 +162,20 @@ void DataManager::editRestStruct(QString id, const QString &namein, QString dist
 bool DataManager::deleteRestStruct(QString id)
 {
     bool check=false;
-    for(int i=0;i<inRest.length();i++)
+    for(int i=0;i<inRest.size();i++)
     {
-        if(inRest[i].idNum==id.toInt())
-        {
-            inRest.remove(i);
+        if(inRest[i].idNum=id.toInt())
             check=true;
-        }
     }
+    inRest.clear();
+    inMenu.clear();
+    inDist.clear();
+    DB->loadRestaurants(inRest);
+    DB->loadMenus(inMenu);
+    DB->loadDistances(inDist);
+    this->sortDist();
+    this->sortMenus();
+
     return check;
 }
 bool DataManager::editMenu(QString parent, const QString &namein, QString cost)
@@ -419,27 +426,30 @@ bool DataManager::import()
                 {
                 in >> dst;
                 in >> miles;
+                num = num.trimmed();
+                miles = miles.trimmed();
                 dst = dst.trimmed();
                 //qDebug() << dst << " " << dst.toInt();
                 miles = miles.trimmed();
-                temp.destID=dst.toInt();
-                temp.sourceID=num.toInt();
-                temp.dist=dist.toDouble();
+//                temp.destID=dst.toInt();
+//                temp.sourceID=num.toInt();
+//                temp.dist=dist.toDouble();
 
-                temp2.destID=temp.sourceID;
-                temp2.sourceID=temp.destID;
-                temp2.dist=temp.dist;
+//                temp2.destID=temp.sourceID;
+//                qDebug() << num.toInt();
+//                temp2.sourceID=temp.destID;
+//                temp2.dist=temp.dist;
 
-                for(int h=0;h<inRest.length();h++)
-                {
-                    if(inRest[h].idNum==temp2.sourceID)
-                    {
-                        inRest[h].DList.push_back(temp2);
-                    }
-                }
-                id = dst.toInt();
+//                for(int h=0;h<inRest.length();h++)
+//                {
+//                    if(inRest[h].idNum==temp2.sourceID)
+//                    {
+//                        inRest[h].DList.push_back(temp2);
+//                    }
+//                }
+                //id = dst.toInt();
 
-                dlist.push_back(temp);
+                //dlist.push_back(temp);
                // helper(id, temp2);
                 //inDist.push_back(temp2);
 
@@ -458,18 +468,28 @@ bool DataManager::import()
                 Menu temp;
                 menuitem=in.readLine();
                 menucost=in.readLine();
-                temp.parentID=num.toInt();
-                temp.name=menuitem;
-                temp.cost=menucost.toDouble();
-                rmenu.push_back(temp);
+//                temp.parentID=num.toInt();
+//                temp.name=menuitem;
+//                temp.cost=menucost.toDouble();
+                //rmenu.push_back(temp);
                 addMenu(num, menuitem, menucost);
-                addMenuStruct(num, menuitem, menucost);
+                //addMenuStruct(num, menuitem, menucost);
             }
             addRestaurant(num, name, sbDist, menucount);
-            addRestStruct(num, name, sbDist, menucount, dlist, rmenu);
+            //addRestStruct(num, name, sbDist, menucount, dlist, rmenu);
 
             in.readLine();
             in.readLine();
+            inRest.clear();
+            inMenu.clear();
+            inDist.clear();
+
+            DB->loadRestaurants(inRest);
+            DB->loadMenus(inMenu);
+            DB->loadDistances(inDist);
+            this->sortDist();
+            this->sortMenus();
+
         }
     }
     return success;
@@ -477,10 +497,11 @@ bool DataManager::import()
 
 void DataManager::helper(int id, AllDist in)
 {
-    for(int i=0;i<inRest.length();i++)
+    for(int i=0;i<inRest.size();i++)
     {
         if(inRest[i].idNum==id)
         {
+
             inRest[i].DList.push_back(in);
         }
     }
